@@ -1,0 +1,10 @@
+{
+  "name": "riffside-ui",
+  "version": "1.0.0",
+  "contract": 1,
+  "files": {
+    "foundations.css": "9d0eb0c22a71740f8c328ed8f4448fb70b739c4101da2808d1bab8643baae3e7",
+    "presets.json": "39b4b3a8bf1b939b4798a5b4a1e819bf3ae08c74aa4ab68386a5f7041b6e1746",
+    "palettes.json": "df1e9cbd2dd569f4e30cb3172be1c401305a7aa3da12f7bbe9c236460740be58"
+  }
+}

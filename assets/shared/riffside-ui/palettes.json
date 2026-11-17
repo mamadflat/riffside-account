@@ -1,0 +1,65 @@
+{
+  "name": "Riffside Minimal Creative",
+  "version": "1.0.0",
+  "defaultMode": "light",
+  "brand": "#ff795f",
+  "modes": {
+    "light": {
+      "background": "#f6f5f0",
+      "surface": "#ffffff",
+      "raised": "#eeede7",
+      "text": "#222621",
+      "muted": "#656b64",
+      "border": "#dedfd7",
+      "accent": "#a83e2b",
+      "accent_soft": "#fcebe5",
+      "button": "#ff795f",
+      "button_hover": "#ff967e",
+      "button_text": "#222621",
+      "success": "#28634b",
+      "success_soft": "#e8f2eb",
+      "danger": "#ac3938",
+      "danger_soft": "#fbeceb"
+    },
+    "dark": {
+      "background": "#191d1c",
+      "surface": "#222826",
+      "raised": "#2b322f",
+      "text": "#f1f3eb",
+      "muted": "#b2bcb4",
+      "border": "#424b45",
+      "accent": "#ff967e",
+      "accent_soft": "#402c28",
+      "button": "#ff795f",
+      "button_hover": "#ff967e",
+      "button_text": "#222621",
+      "success": "#a1d6b6",
+      "success_soft": "#293e32",
+      "danger": "#ffa5a0",
+      "danger_soft": "#442c2d"
+    }
+  },
+  "space": [
+    4,
+    8,
+    12,
+    16,
+    24,
+    32,
+    48,
+    64
+  ],
+  "radii": {
+    "control": 8,
+    "card": 16
+  },
+  "typography": {
+    "bodyLineHeight": 1.9,
+    "headingLineHeight": 1.4,
+    "pluginFont": "inherit"
+  },
+  "motion": {
+    "durationMs": 180,
+    "reducedMotion": true
+  }
+}
