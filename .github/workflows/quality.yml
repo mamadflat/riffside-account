@@ -16,4 +16,6 @@ jobs:
           coverage: none
       - run: find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
       - run: php tests/appearance-contract.php
+      - run: php tests/dashboard.php
+      - run: php tests/dashboard-legacy.php
       - run: node --test tests/*.test.cjs

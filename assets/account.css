@@ -44,7 +44,18 @@ body.ra-dashboard-document{margin:0;padding:0!important;background:var(--yh-page
 @media(prefers-reduced-motion:reduce){.riffside-account.ra-enhanced .ra-sidebar{transition:none}}
 
 
-.riffside-account:not(.ra-enhanced) button.ra-menu-toggle,.riffside-account:not(.ra-enhanced) button.ra-menu-close{display:none}
+html:not(.ra-js) .riffside-account button.ra-menu-toggle,html:not(.ra-js) .riffside-account button.ra-menu-close{display:none}
 
 
 
+
+/* Keep the mobile shell stable from the first paint, before footer scripts load. */
+.riffside-account .ra-mobile-nav{display:none}
+@media(max-width:760px){
+ html.ra-js .riffside-account:not(.ra-menu-is-open) .ra-sidebar{position:fixed;inset-block:0;inset-inline-start:0;inline-size:min(300px,calc(100% - 32px));block-size:100dvh;visibility:hidden;transform:translateX(105%)}
+ .riffside-account .ra-content{padding-block-end:calc(96px + env(safe-area-inset-bottom))}
+ .riffside-account .ra-mobile-nav{display:flex;position:fixed;inset-inline:0;inset-block-end:0;z-index:30;justify-content:space-around;gap:4px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:var(--ra-surface);border-block-start:1px solid var(--ra-border)}
+ .riffside-account .ra-mobile-nav a{display:grid;justify-items:center;align-content:center;gap:4px;min-block-size:48px;flex:1;color:var(--ra-muted);font-size:11px;text-decoration:none;border-radius:var(--rs-radius-control,8px)}
+ .riffside-account .ra-mobile-nav svg{inline-size:22px;block-size:22px}
+ .riffside-account .ra-mobile-nav a[aria-current=page]{color:var(--ra-accent);background:var(--ra-accent-soft)}
+}
