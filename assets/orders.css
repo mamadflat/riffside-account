@@ -1,0 +1,63 @@
+/* Order screens consume the same account palette and UI contract as home. */
+.riffside-account :is(.ra-orders,.ra-order-view){max-inline-size:1120px;margin-inline:auto;min-inline-size:0}
+.riffside-account :is(.ra-orders,.ra-order-view) .amount{color:inherit}
+.riffside-account .ra-orders>.woocommerce-info{margin-block:16px}
+.riffside-account .ra-orders .ra-page-head p{min-block-size:1.9em}
+.riffside-account :is(.ra-orders,.ra-order-view) :is(a,button,summary){scroll-margin-block:110px 120px}
+.riffside-account .ra-order-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:6px;border:1px solid var(--ra-border);border-radius:var(--rs-radius-card,16px);background:var(--ra-surface)}
+.riffside-account .ra-order-tabs a{display:flex;align-items:center;justify-content:center;gap:10px;min-block-size:52px;padding:8px;color:var(--ra-muted);border-radius:var(--rs-radius-control,8px);font-size:14px;text-decoration:none}
+.riffside-account .ra-order-tabs strong{font-size:12px;min-inline-size:24px;text-align:center;background:var(--ra-raised);border-radius:6px;padding:2px 6px}
+.riffside-account .ra-order-tabs a[aria-current=page]{background:var(--ra-accent-soft);color:var(--ra-accent);font-weight:700}
+.riffside-account .ra-order-tabs a:hover{background:var(--ra-raised)}
+.riffside-account .ra-orders-description{font-size:13px;color:var(--ra-muted);margin-block:16px 24px}
+.riffside-account .ra-orders-list{display:grid;gap:16px}
+.riffside-account .ra-order-card{padding:24px;border:1px solid var(--ra-border);border-radius:var(--rs-radius-card,16px);background:var(--ra-surface);min-inline-size:0}
+.riffside-account :is(.ra-order-card-head,.ra-order-card-foot,.ra-detail-heading){display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.riffside-account .ra-order-number{display:inline-flex;align-items:center;gap:6px;min-block-size:44px;font-size:15px;font-weight:700;color:var(--ra-text)}
+.riffside-account .ra-order-status{display:inline-flex;align-items:center;padding:4px 10px;border-radius:6px;background:var(--ra-accent-soft);color:var(--ra-accent);font-size:12px;font-weight:600;max-inline-size:100%;overflow-wrap:anywhere}
+.riffside-account .ra-order-status .va-pill{color:inherit;background:none;padding:0;border:0;font:inherit}
+.riffside-account .ra-order-preview{display:flex;align-items:center;gap:16px;margin-block:16px}
+.riffside-account .ra-order-picture{display:grid;place-items:center;flex:0 0 56px;inline-size:56px;block-size:56px;background:var(--ra-raised);border-radius:12px;color:var(--ra-accent)}
+.riffside-account .ra-order-preview>div{min-inline-size:0}.riffside-account .ra-order-preview p{font-size:15px;overflow-wrap:anywhere}.riffside-account .ra-order-preview small{margin-block-start:6px}
+.riffside-account .ra-order-status-hint{font-size:13px;color:var(--ra-muted)}
+.riffside-account .ra-order-card-foot{border-block-start:1px solid var(--ra-border);padding-block-start:16px;margin-block-start:20px}
+.riffside-account .ra-order-amount strong{font-size:16px;overflow-wrap:anywhere}.riffside-account .ra-order-amount small{margin-block-end:4px}
+.riffside-account .ra-order-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.riffside-account .ra-order-actions .ra-button{margin:0}
+.riffside-account .ra-order-actions .cancel{background:transparent;border-color:transparent;color:var(--ra-muted);font-weight:400}
+.riffside-account .ra-order-extra{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-block-start:12px;font-size:13px}
+.riffside-account .ra-order-pagination{display:flex;align-items:center;justify-content:center;gap:16px;margin-block-start:24px;flex-wrap:wrap;font-size:13px;color:var(--ra-muted)}
+.riffside-account .ra-order-empty{display:grid;justify-items:center;text-align:center;gap:16px;padding:48px 24px;background:var(--ra-surface);border:1px solid var(--ra-border);border-radius:var(--rs-radius-card,16px)}
+.riffside-account .ra-order-empty>svg{inline-size:40px;block-size:40px;color:var(--ra-accent)}.riffside-account .ra-order-empty p{max-inline-size:44ch;color:var(--ra-muted);font-size:14px}
+.riffside-account .ra-orders-back{display:inline-flex;align-items:center;gap:8px;min-block-size:44px;margin-block-end:16px;font-size:13px}.riffside-account .ra-orders-back svg{transform:scaleX(-1);inline-size:18px;block-size:18px}
+.riffside-account .ra-detail-heading{margin-block-end:24px}.riffside-account .ra-detail-heading h1{font-size:24px}.riffside-account .ra-detail-heading p{margin-block-start:8px;font-size:13px;color:var(--ra-muted)}
+.riffside-account .ra-order-state{display:flex;gap:16px;align-items:center;background:var(--ra-accent-soft);border:1px solid var(--ra-border);padding:20px;border-radius:var(--rs-radius-card,16px);margin-block-end:24px}
+.riffside-account .ra-order-state-icon{display:grid;place-items:center;inline-size:40px;block-size:40px;flex-shrink:0;color:var(--ra-accent)}.riffside-account .ra-order-state h2{font-size:15px}.riffside-account .ra-order-state p{font-size:14px;margin-block-start:6px;color:var(--ra-muted)}
+.riffside-account .ra-detail-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start;margin:0}
+.riffside-account .ra-detail-layout>.ra-card{margin:0}.riffside-account .ra-detail-layout>h2{grid-column:1/-1}
+.riffside-account .ra-detail-products table{table-layout:fixed;border-collapse:collapse;margin-block:16px 0;background:transparent}.riffside-account .ra-detail-products th:first-child{inline-size:66%}
+.riffside-account .ra-detail-products :is(td,th){text-align:start;padding:16px 8px;border-block-end:1px solid var(--ra-border);vertical-align:top}
+.riffside-account .ra-detail-products thead th{color:var(--ra-muted);font-size:12px;font-weight:500}.riffside-account .ra-detail-products td{font-size:14px}
+.riffside-account .ra-detail-products .product-name>a{display:inline-flex;align-items:center;min-block-size:44px;color:var(--ra-text);font-weight:600;overflow-wrap:anywhere}
+.riffside-account .ra-detail-products .product-quantity{display:inline-block;white-space:nowrap;font-size:12px;font-weight:500;color:var(--ra-muted)}
+.riffside-account .ra-detail-products .wc-item-meta{list-style:none;margin:8px 0 0;padding:0;font-size:12px;color:var(--ra-muted)}.riffside-account .ra-detail-products .wc-item-meta li{margin:0}.riffside-account .ra-detail-products .wc-item-meta p{display:inline}
+.riffside-account .ra-detail-payment dl{margin:20px 0}.riffside-account .ra-detail-payment dl>div{display:flex;justify-content:space-between;gap:16px;margin-block:12px;font-size:13px}.riffside-account .ra-detail-payment dt{font-weight:400;color:var(--ra-muted);margin:0;min-inline-size:0}.riffside-account .ra-detail-payment dd{margin:0;text-align:end;overflow-wrap:anywhere;min-inline-size:0}
+.riffside-account .ra-detail-payment dl>.ra-total-row{border-block-start:1px solid var(--ra-border);padding-block-start:16px;margin-block-start:16px;font-size:15px;font-weight:700}.riffside-account .ra-total-row dt{font-weight:700;color:var(--ra-text)}
+.riffside-account .ra-detail-payment .ra-order-actions{align-items:stretch}.riffside-account .ra-detail-payment .ra-order-actions a{flex:1 0 auto}
+.riffside-account .ra-order-extensions{grid-column:1/-1;min-inline-size:0}.riffside-account .ra-order-extensions:empty{display:none}
+.riffside-account .ra-order-view .ra-order-tracking{margin-block-end:24px}.riffside-account .ra-order-tracking p{overflow-wrap:anywhere}.riffside-account .ra-order-tracking .ra-button{margin-inline-start:8px}.riffside-account .ra-order-tracking [role=status]{display:block;font-size:13px}
+.riffside-account .ra-order-addresses{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-block:24px}.riffside-account .ra-order-addresses>.ra-card{margin:0}.riffside-account .ra-order-addresses address{padding:0;border:0;margin-block-start:16px;overflow-wrap:anywhere}.riffside-account .ra-order-addresses address p{margin-block-start:12px}
+.riffside-account .ra-customer-note{margin-block-start:20px;padding:16px;background:var(--ra-raised);border-radius:8px}.riffside-account .ra-customer-note h3{font-size:14px}.riffside-account .ra-customer-note p{font-size:14px;margin-block-start:8px;overflow-wrap:anywhere}
+.riffside-account .ra-order-notes ol{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:20px}.riffside-account .ra-order-notes li{padding-inline-start:16px;border-inline-start:2px solid var(--ra-border);margin:0}.riffside-account .ra-order-notes li div{font-size:14px;overflow-wrap:anywhere}.riffside-account .ra-order-notes small{margin-block-end:8px}
+.riffside-account .ra-order-view :is(del,ins){background:transparent}.riffside-account .ra-line-total-label{display:none}
+@media(max-width:1000px){.riffside-account .ra-detail-layout{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){
+ .riffside-account .ra-orders .ra-page-head p{min-block-size:3.8em}
+ .riffside-account .ra-order-tabs{gap:4px;padding:4px}.riffside-account .ra-order-tabs a{gap:4px;flex-wrap:wrap;align-content:center;font-size:12px;min-block-size:56px;padding:8px 4px}.riffside-account .ra-order-tabs strong{font-size:11px;padding:0 4px;min-inline-size:20px}
+ .riffside-account .ra-order-card{padding:16px}.riffside-account .ra-order-preview{gap:12px}.riffside-account .ra-order-picture{flex-basis:44px;inline-size:44px;block-size:44px}.riffside-account .ra-order-number{font-size:14px}
+ .riffside-account .ra-order-card-foot{align-items:stretch;gap:16px}.riffside-account .ra-order-card-foot>.ra-order-actions{inline-size:100%}.riffside-account .ra-order-actions a{flex:1 0 auto}
+ .riffside-account .ra-order-tabs span{white-space:nowrap}.riffside-account .ra-order-status{font-size:11px}.riffside-account .ra-detail-heading h1{font-size:21px}
+ .riffside-account .ra-order-state{padding:16px;gap:8px}.riffside-account .ra-order-addresses{grid-template-columns:minmax(0,1fr);gap:16px}.riffside-account .ra-detail-layout{gap:16px}
+ .riffside-account .ra-detail-products thead{display:none}.riffside-account .ra-detail-products tr{display:block;padding-block:16px;border-block-end:1px solid var(--ra-border)}.riffside-account .ra-detail-products tr:last-child{border:0;padding-block-end:0}
+ .riffside-account .ra-detail-products td{display:block;border:0;padding:0;inline-size:100%}.riffside-account .ra-detail-products td.product-total{margin-block-start:12px;padding:8px 12px;background:var(--ra-raised);border-radius:6px;font-size:14px}.riffside-account .ra-line-total-label{display:inline;color:var(--ra-muted);font-size:12px}
+ .riffside-account .ra-detail-products .product-name>a{max-inline-size:100%;line-height:2}.riffside-account .ra-order-pagination{gap:8px}.riffside-account .ra-order-pagination .ra-button{padding-inline:10px}
+}
