@@ -18,4 +18,5 @@ jobs:
       - run: php tests/appearance-contract.php
       - run: php tests/dashboard.php
       - run: php tests/dashboard-legacy.php
+      - run: php tests/orders.php
       - run: node --test tests/*.test.cjs

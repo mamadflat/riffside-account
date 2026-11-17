@@ -9,6 +9,7 @@ final class Plugin {
         add_filter('woocommerce_get_query_vars',static function($vars){if(!class_exists('Riffside_Portal'))$vars['ra-support']='ra-support';return $vars;});
         add_action('wp',[__CLASS__,'legacy'],99);
         add_filter('wc_get_template',[__CLASS__,'template'],999,5);
+        add_filter('woocommerce_my_account_my_orders_query',[Orders::class,'query'],999);
         add_filter('template_include',static function($template){return is_account_page()&&is_user_logged_in()?RIFFSIDE_ACCOUNT_DIR.'templates/page-account.php':$template;},999);
         add_filter('show_admin_bar',static function($show){return is_account_page()&&is_user_logged_in()?false:$show;});
         add_filter('woocommerce_account_menu_items',[__CLASS__,'menu'],9999);
@@ -46,7 +47,8 @@ final class Plugin {
     }
     public static function template($path,$name,$args,$template_path,$default_path){
         if(!is_account_page()||!is_user_logged_in())return $path;
-        $map=['myaccount/my-account.php'=>'account.php','myaccount/navigation.php'=>'navigation.php','myaccount/dashboard.php'=>'dashboard.php'];
+        $map=['myaccount/my-account.php'=>'account.php','myaccount/navigation.php'=>'navigation.php','myaccount/dashboard.php'=>'dashboard.php','myaccount/orders.php'=>'orders.php','myaccount/view-order.php'=>'view-order.php'];
+        if(is_wc_endpoint_url('view-order'))$map+=['order/order-details.php'=>'order-details.php','order/order-details-item.php'=>'order-item.php','order/order-details-customer.php'=>'order-customer.php'];
         return isset($map[$name])?RIFFSIDE_ACCOUNT_DIR.'templates/'.$map[$name]:$path;
     }
     public static function legacy(){
@@ -68,6 +70,7 @@ final class Plugin {
         wp_enqueue_style('riffside-account',plugins_url('assets/account.css',RIFFSIDE_ACCOUNT_FILE),['riffside-ui-v1'],RIFFSIDE_ACCOUNT_VERSION);
         wp_add_inline_style('riffside-account',Appearance::css());
         if(!is_wc_endpoint_url())wp_enqueue_style('riffside-account-home',plugins_url('assets/home.css',RIFFSIDE_ACCOUNT_FILE),['riffside-account'],RIFFSIDE_ACCOUNT_VERSION);
+        if(is_wc_endpoint_url('orders')||is_wc_endpoint_url('view-order'))wp_enqueue_style('riffside-account-orders',plugins_url('assets/orders.css',RIFFSIDE_ACCOUNT_FILE),['riffside-account'],RIFFSIDE_ACCOUNT_VERSION);
         wp_enqueue_script('riffside-account',plugins_url('assets/account.js',RIFFSIDE_ACCOUNT_FILE),[],RIFFSIDE_ACCOUNT_VERSION,true);
         $s=Appearance::settings();wp_localize_script('riffside-account','riffsideAccount',['mode'=>$s['mode'],'defaultMode'=>$s['default_mode']]);
     }
@@ -84,7 +87,7 @@ final class Plugin {
         $order=wc_get_order($order_id);if(!$order||(int)$order->get_customer_id()!==get_current_user_id())return;
         $code=(string)$order->get_meta('_valabi_account_tracking_code');if(!$code)$code=(string)$order->get_meta('post_barcode');
         if(!$code||!preg_match('/^[0-9]{10,30}$/D',$code))return;
-        echo '<section class="ra-card"><h3>رهگیری سفارش</h3><p>کد رهگیری: <bdi dir="ltr">'.esc_html($code).'</bdi></p><button type="button" data-ra-copy="'.esc_attr($code).'">کپی کد رهگیری</button><a class="ra-button" href="https://tracking.post.ir/" target="_blank" rel="noopener noreferrer">ورود به سامانهٔ پست</a><span data-ra-copy-status role="status"></span></section>';
+        echo '<section class="ra-card ra-order-tracking"><h2>رهگیری مرسوله</h2><p>کد رهگیری: <bdi dir="ltr">'.esc_html($code).'</bdi></p><button type="button" data-ra-copy="'.esc_attr($code).'">کپی کد رهگیری</button><a class="ra-button" href="https://tracking.post.ir/" target="_blank" rel="noopener noreferrer">رهگیری در سایت پست</a><span data-ra-copy-status role="status"></span></section>';
     }
     public static function title(){global $wp;$items=wc_get_account_menu_items();foreach($items as $key=>$label)if(isset($wp->query_vars[$key]))return wp_strip_all_tags($label);if(isset($wp->query_vars['view-order']))return 'جزئیات سفارش';return 'خانه';}
 }
