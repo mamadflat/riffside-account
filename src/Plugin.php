@@ -30,6 +30,7 @@ final class Plugin {
     public static function endpoints(){if(!class_exists('Riffside_Portal'))add_rewrite_endpoint('ra-support',EP_ROOT|EP_PAGES);}
     public static function support_endpoint(){return class_exists('Riffside_Portal')?'tickets':'ra-support';}
     public static function menu($items){
+        if(isset($items['dashboard']))$items['dashboard']='خانه';
         $logout=$items['customer-logout']??'خروج';unset($items['customer-logout']);
         if(Appearance::enabled('support'))$items[self::support_endpoint()]='پشتیبانی';else unset($items['ra-support'],$items['tickets']);
         if(!Appearance::enabled('licenses')){unset($items['licenses'],$items[Appearance::settings()['license_endpoint']]);}
@@ -66,6 +67,7 @@ final class Plugin {
         if(!wp_style_is('riffside-ui-v1','registered'))wp_register_style('riffside-ui-v1',plugins_url('assets/shared/riffside-ui/foundations.css',RIFFSIDE_ACCOUNT_FILE),[],'1.0.0');
         wp_enqueue_style('riffside-account',plugins_url('assets/account.css',RIFFSIDE_ACCOUNT_FILE),['riffside-ui-v1'],RIFFSIDE_ACCOUNT_VERSION);
         wp_add_inline_style('riffside-account',Appearance::css());
+        if(!is_wc_endpoint_url())wp_enqueue_style('riffside-account-home',plugins_url('assets/home.css',RIFFSIDE_ACCOUNT_FILE),['riffside-account'],RIFFSIDE_ACCOUNT_VERSION);
         wp_enqueue_script('riffside-account',plugins_url('assets/account.js',RIFFSIDE_ACCOUNT_FILE),[],RIFFSIDE_ACCOUNT_VERSION,true);
         $s=Appearance::settings();wp_localize_script('riffside-account','riffsideAccount',['mode'=>$s['mode'],'defaultMode'=>$s['default_mode']]);
     }
@@ -84,5 +86,5 @@ final class Plugin {
         if(!$code||!preg_match('/^[0-9]{10,30}$/D',$code))return;
         echo '<section class="ra-card"><h3>رهگیری سفارش</h3><p>کد رهگیری: <bdi dir="ltr">'.esc_html($code).'</bdi></p><button type="button" data-ra-copy="'.esc_attr($code).'">کپی کد رهگیری</button><a class="ra-button" href="https://tracking.post.ir/" target="_blank" rel="noopener noreferrer">ورود به سامانهٔ پست</a><span data-ra-copy-status role="status"></span></section>';
     }
-    public static function title(){global $wp;$items=wc_get_account_menu_items();foreach($items as $key=>$label)if(isset($wp->query_vars[$key]))return wp_strip_all_tags($label);if(isset($wp->query_vars['view-order']))return 'جزئیات سفارش';return 'پیشخوان';}
+    public static function title(){global $wp;$items=wc_get_account_menu_items();foreach($items as $key=>$label)if(isset($wp->query_vars[$key]))return wp_strip_all_tags($label);if(isset($wp->query_vars['view-order']))return 'جزئیات سفارش';return 'خانه';}
 }

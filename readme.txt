@@ -3,7 +3,7 @@ Contributors: riffside
 Requires at least: 6.5
 Requires PHP: 8.0
 Requires Plugins: woocommerce
-Stable tag: 0.3.0
+Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +20,9 @@ This release does not implement commercial license activation, private update de
 Back up the site. Install the riffside-account folder and activate with WooCommerce active. Configure appearance under the Riffside panel menu. Embedded Customer Club follows the panel appearance; its standalone settings remain independent.
 
 == Changelog ==
+= 0.4.0 =
+Mobile-first home widgets, club credit and configured reward opportunities, current orders, activity and four-destination mobile navigation. Stable first paint and natural Persian customer copy.
+
 = 0.3.0 =
 Shared versioned UI foundations, host appearance bridge, synchronized theme controls and independent plugin packages. No reward rules or ledger migrations.
 

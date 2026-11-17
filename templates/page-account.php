@@ -7,6 +7,7 @@ defined('ABSPATH') || exit;
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <script>document.documentElement.classList.add('ra-js');</script>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class('ra-dashboard-document'); ?>>
