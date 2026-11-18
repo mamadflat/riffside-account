@@ -13,6 +13,8 @@ use Riffside\Account\Appearance;
 use Riffside\Account\Plugin;
 function check($ok, $message) { if (!$ok) { throw new RuntimeException($message); } }
 $panel = Appearance::defaults();
+check(array_keys(Appearance::presets()) === ['riffside'], 'No customer-specific preset is bundled');
+check($panel['features'] === ['support'=>false, 'licenses'=>false], 'Optional modules are disabled on fresh installs');
 $panel['theme'] = 'yadakhamrah'; $panel['mode'] = 'dark';
 $panel['palettes']['dark']['button'] = '#123456';
 $options = [Appearance::OPTION => $panel];
@@ -21,6 +23,7 @@ $before = $options;
 $effective = Plugin::club_appearance($club);
 check($effective['palettes']['dark']['button'] === '#123456', 'Embedded club follows custom panel color');
 check($effective['mode'] === 'dark' && $effective['extension'] === 'preserved', 'Only appearance fields are overridden');
+check($effective['theme'] === 'riffside', 'Retired preset falls back without losing saved colors');
 check($options === $before && $club['mode'] === 'light', 'Reading cannot persist host overrides');
 foreach (['admin', 'account', 'logged'] as $context) {
     $GLOBALS[$context] = $context === 'admin';

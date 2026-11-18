@@ -15,7 +15,7 @@ final class Plugin {
         add_filter('woocommerce_account_menu_items',[__CLASS__,'menu'],9999);
         add_action('template_redirect',[__CLASS__,'guard_modules'],0);
         add_action('wp_enqueue_scripts',[__CLASS__,'assets'],999);
-        add_filter('body_class',static function($classes){if(is_account_page()&&is_user_logged_in()){$classes=array_diff($classes,['valabi-account-panel','va-account']);$classes[]='riffside-account-page';}return $classes;},999);
+        add_filter('body_class',static function($classes){if(is_account_page()&&is_user_logged_in()){$classes[]='riffside-account-page';}return $classes;},999);
         add_action('template_redirect',static function(){if(is_account_page()){if(!defined('DONOTCACHEPAGE'))define('DONOTCACHEPAGE',true);nocache_headers();header('X-Robots-Tag: noindex, nofollow',true);}});
         add_action('admin_init',[Appearance::class,'register']);
         add_action('admin_enqueue_scripts',[Appearance::class,'admin_assets']);
@@ -55,18 +55,10 @@ final class Plugin {
         if(!is_account_page()||!is_user_logged_in())return;
         // The dashboard already shows the same live balance and links to the club.
         remove_action('woocommerce_account_dashboard',['Customer_Club\\Menu_Balance','render_widget'],8);
-        if(!Appearance::enabled('licenses'))remove_action('woocommerce_order_details_after_order_table',['YHLM\\Customer','order']);
-        // Retain Valabi's operational hooks, settings, registry, birthday and receipts.
-        // Only remove its account presentation; deactivating this plugin restores it.
-        $remove=['MBN_Frontend'=>['render','enqueue','body_class'],'Valabi_Account_Page_Header'=>['render'],'Valabi_Account_Flatsome'=>['render_home_button'],'Valabi_Account_Order'=>['override_view_order_template'],'Valabi_Account_Tabs'=>['orders_toolbar','downloads_empty','addresses_empty']];
-        global $wp_filter;
-        foreach($wp_filter as $hook=>$object)foreach($object->callbacks as $priority=>$callbacks)foreach($callbacks as $callback){$fn=$callback['function'];if(is_array($fn)&&is_object($fn[0])&&isset($remove[get_class($fn[0])])&&in_array($fn[1],$remove[get_class($fn[0])],true))remove_filter($hook,$fn,$priority);}
     }
     public static function assets(){
         if(!is_account_page()||!is_user_logged_in())return;
-        wp_dequeue_style('valabi-account');
-        wp_dequeue_script('yhm-header');
-        if(!wp_style_is('riffside-ui-v1','registered'))wp_register_style('riffside-ui-v1',plugins_url('assets/shared/riffside-ui/foundations.css',RIFFSIDE_ACCOUNT_FILE),[],'1.0.0');
+        if(!wp_style_is('riffside-ui-v1','registered'))wp_register_style('riffside-ui-v1',plugins_url('assets/shared/riffside-ui/foundations.css',RIFFSIDE_ACCOUNT_FILE),[],'1.0.1');
         wp_enqueue_style('riffside-account',plugins_url('assets/account.css',RIFFSIDE_ACCOUNT_FILE),['riffside-ui-v1'],RIFFSIDE_ACCOUNT_VERSION);
         wp_add_inline_style('riffside-account',Appearance::css());
         if(!is_wc_endpoint_url())wp_enqueue_style('riffside-account-home',plugins_url('assets/home.css',RIFFSIDE_ACCOUNT_FILE),['riffside-account'],RIFFSIDE_ACCOUNT_VERSION);

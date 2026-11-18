@@ -28,7 +28,6 @@ final class Appearance {
             $selector='.riffside-account[data-ra-theme="'.$mode.'"]';
             if($mode===$initial)$selector.=',.riffside-account:not([data-ra-theme])';
             $css.=$selector.'{color-scheme:'.$mode.';';
-            if($s['theme']==='yadakhamrah')$css.='--icon-accent:#fdba12;';
             foreach($s['palettes'][$mode] as $key=>$value)$css.='--ra-'.str_replace('_','-',$key).':'.$value.($key==='button_radius'?'px':'').';';
             $css.='}';
         }
