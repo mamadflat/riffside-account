@@ -39,46 +39,5 @@
         "button_radius": 8
       }
     }
-  },
-  "yadakhamrah": {
-    "label": "یدک همراه — هماهنگ با قالب سایت",
-    "palettes": {
-      "light": {
-        "background": "#f5f7fc",
-        "surface": "#ffffff",
-        "raised": "#e8eef9",
-        "text": "#19243e",
-        "muted": "#526078",
-        "border": "#d9e2f1",
-        "accent": "#1f3465",
-        "accent_soft": "#e8eef9",
-        "button": "#1f3465",
-        "button_hover": "#17284f",
-        "button_text": "#ffffff",
-        "success": "#12654f",
-        "success_soft": "#e6f4ee",
-        "danger": "#a5253a",
-        "danger_soft": "#fff1f3",
-        "button_radius": 10
-      },
-      "dark": {
-        "background": "#111a2b",
-        "surface": "#19243e",
-        "raised": "#233351",
-        "text": "#f3f6fc",
-        "muted": "#b8c5dd",
-        "border": "#41516d",
-        "accent": "#fdba12",
-        "accent_soft": "#342b16",
-        "button": "#fdba12",
-        "button_hover": "#ffd266",
-        "button_text": "#19243e",
-        "success": "#a1d6b6",
-        "success_soft": "#19382f",
-        "danger": "#ffadb9",
-        "danger_soft": "#44242f",
-        "button_radius": 10
-      }
-    }
   }
 }

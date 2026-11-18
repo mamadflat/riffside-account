@@ -2,7 +2,7 @@
 /**
  * Plugin Name: پنل کاربری ریف‌ساید
  * Description: حساب یکپارچهٔ ووکامرس، باشگاه مشتریان و پشتیبانی با ظاهر قابل تنظیم و فونت میزبان.
- * Version: 0.5.0
+ * Version: 0.5.1
  * Author: Riffside
  * Requires at least: 6.5
  * Requires PHP: 8.0
@@ -13,7 +13,7 @@
 defined('ABSPATH') || exit;
 define('RIFFSIDE_ACCOUNT_FILE', __FILE__);
 define('RIFFSIDE_ACCOUNT_DIR', __DIR__ . '/');
-define('RIFFSIDE_ACCOUNT_VERSION', '0.5.0');
+define('RIFFSIDE_ACCOUNT_VERSION', '0.5.1');
 require_once __DIR__ . '/src/Appearance.php';
 require_once __DIR__ . '/src/Support.php';
 require_once __DIR__ . '/src/Plugin.php';

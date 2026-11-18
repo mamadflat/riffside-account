@@ -51,7 +51,7 @@ final class Support {
             update_post_meta($id,'_ra_status',self::staff()?'answered':'open');update_post_meta($reply,'_ra_staff',self::staff()?1:0);$message='پاسخ ثبت شد.';
         }else{update_post_meta($id,'_ra_status','closed');$message='تیکت بسته شد.';}
         update_option($token_key,$id,false);set_transient('ra_notice_'.get_current_user_id(),$message,120);
-        // Notifications use this store's recipient. The Yadak local isolation blocks delivery.
+        // Notifications use this store's recipient.
         if($op!=='close'){$ticket=get_post($id);$owner=get_userdata($ticket->post_author);$to=self::staff()&&$op==='reply'&&$owner?$owner->user_email:get_option('admin_email');$url=self::staff()&&$op==='reply'?self::url($id):self::url($id,true);wp_mail($to,'پیام پشتیبانی — '.wp_specialchars_decode(get_bloginfo('name'),ENT_QUOTES),'گفت‌وگوی پشتیبانی به‌روز شد: '.$url);}
         wp_safe_redirect(self::url($id,$admin),303);exit;
     }
