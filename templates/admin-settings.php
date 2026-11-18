@@ -50,5 +50,7 @@ $license_provider=has_action('woocommerce_account_'.$s['license_endpoint'].'_end
   <?php if(class_exists('\Customer_Club\Admin')): ?><section><h2>باشگاه مشتریان</h2><p>موجودی و تراکنش‌ها از افزونهٔ باشگاه خوانده می‌شوند. داخل این پنل، رنگ‌ها و حالت نمایش باشگاه از تنظیمات همین پنل پیروی می‌کند. تنظیمات مستقل باشگاه برای نمایش بیرون از پنل حفظ می‌شود.</p><a class="button" href="<?php echo esc_url(\Customer_Club\Admin::dashboard_url('settings',['section'=>'appearance'])); ?>">تنظیمات نمایش مستقل باشگاه</a></section><?php endif; ?>
  </div>
  <div class="ra-settings-save"><span data-ra-save-status role="status">تنظیمات ذخیره‌شدهٔ این سایت</span><button type="submit" id="submit" class="button button-primary">ذخیرهٔ تنظیمات پنل</button></div>
- </form><p class="ra-version">پنل ریف‌ساید <bdi dir="ltr"><?php echo esc_html(RIFFSIDE_ACCOUNT_VERSION); ?></bdi></p>
+ </form>
+ <?php \Riffside\Account\Extensions::settings_sections(); ?>
+ <p class="ra-version">پنل ریف‌ساید <bdi dir="ltr"><?php echo esc_html(RIFFSIDE_ACCOUNT_VERSION); ?></bdi></p>
 </div>

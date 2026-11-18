@@ -46,4 +46,5 @@ $d=Dashboard::data();$user=$d['user'];$club=$d['club'];$menu=wc_get_account_menu
 <?php endif; ?>
 </div>
 </div>
+<?php \Riffside\Account\Extensions::widgets(); ?>
 <?php do_action('woocommerce_account_dashboard'); do_action('woocommerce_before_my_account'); do_action('woocommerce_after_my_account'); ?>

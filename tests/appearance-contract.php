@@ -2,6 +2,7 @@
 // Portable behavior test: no WordPress database or customer data required.
 define('ABSPATH', __DIR__);
 define('RIFFSIDE_ACCOUNT_DIR', dirname(__DIR__) . '/');
+function apply_filters($hook,$value,...$args){return $value;}
 $admin = false; $account = true; $logged = true;
 function is_admin() { return $GLOBALS['admin']; }
 function is_account_page() { return $GLOBALS['account']; }

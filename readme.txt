@@ -3,7 +3,7 @@ Contributors: riffside
 Requires at least: 6.5
 Requires PHP: 8.0
 Requires Plugins: woocommerce
-Stable tag: 0.5.1
+Stable tag: 0.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +20,9 @@ This release does not implement commercial license activation, private update de
 Back up the site. Install the riffside-account folder and activate with WooCommerce active. Configure appearance under the Riffside panel menu. Embedded Customer Club follows the panel appearance; its standalone settings remain independent.
 
 == Changelog ==
+= 0.6.0 =
+Versioned extension API for private pages, menu items, dashboard widgets, owned-order sections and independent settings. Preset/CSS extension filters. Site-specific shipment tracking moved out of core.
+
 = 0.5.1 =
 Customer-ready generic package. Remove client-specific presets, forced icon colors and theme/plugin hook overrides. Preserve saved custom palettes. Shared UI 1.0.1; optional modules remain opt-in.
 

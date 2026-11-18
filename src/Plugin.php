@@ -23,7 +23,7 @@ final class Plugin {
         Support::boot();
         add_filter('customer_club_appearance_settings',[__CLASS__,'club_appearance']);
         add_filter('customer_club_account_embedded',static function($embedded){return $embedded||(is_account_page()&&is_user_logged_in());});
-        add_action('woocommerce_view_order',[__CLASS__,'tracking'],5);
+        Extensions::boot();
     }
     public static function activate() {
         add_option(Appearance::OPTION,Appearance::defaults(),'',false);self::endpoints();Support::types();flush_rewrite_rules(false);
@@ -75,11 +75,5 @@ final class Plugin {
     public static function icon($name){$allowed=['account','services','store','customer-club','ticket','download','plugins','corporate','files','logout','arrow-left','check','clock'];if(!in_array($name,$allowed,true))$name='files';return '<svg aria-hidden="true" focusable="false"><use href="'.esc_url(plugins_url('assets/icons.svg',RIFFSIDE_ACCOUNT_FILE)).'#ri-'.$name.'"></use></svg>';}
     public static function url($endpoint='dashboard'){return $endpoint==='customer-logout'?wc_logout_url():wc_get_account_endpoint_url($endpoint);}
     public static function number($value){return strtr(number_format_i18n($value),['0'=>'۰','1'=>'۱','2'=>'۲','3'=>'۳','4'=>'۴','5'=>'۵','6'=>'۶','7'=>'۷','8'=>'۸','9'=>'۹']);}
-    public static function tracking($order_id){
-        $order=wc_get_order($order_id);if(!$order||(int)$order->get_customer_id()!==get_current_user_id())return;
-        $code=(string)$order->get_meta('_valabi_account_tracking_code');if(!$code)$code=(string)$order->get_meta('post_barcode');
-        if(!$code||!preg_match('/^[0-9]{10,30}$/D',$code))return;
-        echo '<section class="ra-card ra-order-tracking"><h2>رهگیری مرسوله</h2><p>کد رهگیری: <bdi dir="ltr">'.esc_html($code).'</bdi></p><button type="button" data-ra-copy="'.esc_attr($code).'">کپی کد رهگیری</button><a class="ra-button" href="https://tracking.post.ir/" target="_blank" rel="noopener noreferrer">رهگیری در سایت پست</a><span data-ra-copy-status role="status"></span></section>';
-    }
     public static function title(){global $wp;$items=wc_get_account_menu_items();foreach($items as $key=>$label)if(isset($wp->query_vars[$key]))return wp_strip_all_tags($label);if(isset($wp->query_vars['view-order']))return 'جزئیات سفارش';return 'خانه';}
 }
