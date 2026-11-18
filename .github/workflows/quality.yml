@@ -15,6 +15,7 @@ jobs:
           php-version: ${{ matrix.php }}
           coverage: none
       - run: find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
+      - run: php tests/extensions.php
       - run: php tests/appearance-contract.php
       - run: php tests/dashboard.php
       - run: php tests/dashboard-legacy.php

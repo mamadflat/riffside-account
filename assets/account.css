@@ -59,3 +59,4 @@ html:not(.ra-js) .riffside-account button.ra-menu-toggle,html:not(.ra-js) .riffs
  .riffside-account .ra-mobile-nav svg{inline-size:22px;block-size:22px}
  .riffside-account .ra-mobile-nav a[aria-current=page]{color:var(--ra-accent);background:var(--ra-accent-soft)}
 }
+.riffside-account .ra-extension-widgets{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;margin-block:20px}.riffside-account .ra-extension{min-inline-size:0;overflow-wrap:anywhere}.riffside-account .ra-extension h2{font-size:18px;margin-block:0 16px}.riffside-account .ra-extension a{color:var(--ra-accent)}

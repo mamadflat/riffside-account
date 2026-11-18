@@ -5,7 +5,9 @@ defined('ABSPATH') || exit;
 final class Appearance {
     const OPTION = 'riffside_account_settings';
     public static function presets() {
-        return json_decode(file_get_contents(RIFFSIDE_ACCOUNT_DIR . 'assets/presets.json'), true);
+        $base=json_decode(file_get_contents(RIFFSIDE_ACCOUNT_DIR . 'assets/presets.json'), true);
+        $presets=apply_filters('riffside_account_appearance_presets',$base);
+        return is_array($presets)?array_merge($presets,['riffside'=>$base['riffside']]):$base;
     }
     public static function defaults() {
         return ['theme'=>'riffside','mode'=>'both','default_mode'=>'light','features'=>['support'=>false,'licenses'=>false],'license_endpoint'=>'licenses','palettes'=>self::presets()['riffside']['palettes']];
@@ -31,7 +33,7 @@ final class Appearance {
             foreach($s['palettes'][$mode] as $key=>$value)$css.='--ra-'.str_replace('_','-',$key).':'.$value.($key==='button_radius'?'px':'').';';
             $css.='}';
         }
-        return $css;
+        return apply_filters('riffside_account_appearance_css',$css,$s);
     }
     public static function register() {
         register_setting('riffside_account',self::OPTION,['type'=>'array','sanitize_callback'=>[__CLASS__,'sanitize'],'show_in_rest'=>false]);
