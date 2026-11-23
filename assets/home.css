@@ -69,8 +69,7 @@
     text-decoration: underline;
     text-underline-offset: 4px;
 }
-.riffside-account .ra-home-text-link svg,
-.riffside-account .ra-home-shortcuts a > svg {
+.riffside-account .ra-home-text-link svg {
     inline-size: 16px;
     block-size: 16px;
     flex: 0 0 16px;
@@ -130,43 +129,17 @@
 .riffside-account .ra-home-empty {
     padding-block-start: 14px;
 }
-.riffside-account .ra-home-shortcuts {
-    padding: 4px 14px;
-}
-.riffside-account .ra-home-shortcuts a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-block-size: 64px;
-    padding: 8px 4px;
-    color: var(--ra-text);
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-}
-.riffside-account .ra-home-shortcuts a + a {
-    border-block-start: 1px solid var(--ra-border);
-}
-.riffside-account .ra-home-shortcuts a:hover .ra-home-shortcut-label {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-}
 .riffside-account .ra-home-shortcut-icon {
     display: grid;
     place-items: center;
-    flex: 0 0 36px;
-    block-size: 36px;
+    inline-size: 34px;
+    block-size: 34px;
     border-radius: var(--rs-radius-control, 8px);
     background: var(--ra-raised);
 }
 .riffside-account .ra-home-shortcut-icon svg {
     inline-size: 20px;
     block-size: 20px;
-}
-.riffside-account .ra-home-shortcut-label {
-    flex: 1;
-    min-inline-size: 0;
-    overflow-wrap: anywhere;
 }
 .riffside-account .ra-home-wallet-values {
     display: flex;
@@ -202,9 +175,121 @@
     .riffside-account .ra-home-card {
         padding: 14px;
     }
-    .riffside-account .ra-home-shortcuts {
-        padding-block: 2px;
-    }
+}
+
+.riffside-account :is(.ra-home-welcome, .ra-home-shortcuts, .ra-home-metrics) {
+    grid-column: 1 / -1;
+}
+.riffside-account .ra-home-welcome,
+.riffside-account .ra-home-profile {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+.riffside-account .ra-home-welcome {
+    justify-content: space-between;
+}
+.riffside-account .ra-home-profile {
+    flex-wrap: nowrap;
+    flex: 1 1 230px;
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+}
+.riffside-account .ra-home-profile-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 44px;
+    block-size: 44px;
+    border-radius: 12px;
+    color: var(--ra-accent);
+    background: var(--ra-accent-soft);
+}
+.riffside-account .ra-home-profile-icon svg {
+    inline-size: 24px;
+    block-size: 24px;
+}
+.riffside-account .ra-home-profile p,
+.riffside-account .ra-home-order-meta {
+    color: var(--ra-muted);
+    font-size: 12px;
+    line-height: 1.9;
+}
+.riffside-account .ra-home-welcome .ra-button {
+    margin: 0;
+    min-block-size: 44px;
+}
+.riffside-account .ra-home-shortcuts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.riffside-account .ra-home-shortcut,
+.riffside-account .ra-home-metric {
+    box-sizing: border-box;
+    border: 1px solid var(--ra-border);
+    border-radius: 12px;
+    background: var(--ra-surface);
+    color: var(--ra-text);
+    display: flex;
+    align-items: center;
+    min-block-size: 44px;
+    min-inline-size: 0;
+    gap: 8px;
+    padding: 6px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+.riffside-account :is(a.ra-home-shortcut, a.ra-home-metric):hover {
+    border-color: var(--ra-accent);
+    background: var(--ra-raised);
+}
+.riffside-account .ra-home-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+.riffside-account .ra-home-metric strong {
+    margin-inline-start: auto;
+    font-size: clamp(15px, 2vw, 21px);
+}
+.riffside-account .ra-home-metric svg {
+    flex: 0 0 19px;
+    inline-size: 19px;
+    block-size: 19px;
+    color: var(--ra-accent);
+}
+.riffside-account :is(.ra-order-status, .ra-home-order-status)[data-ra-order-tone="success"] {
+    background: var(--ra-success-soft);
+    color: var(--ra-success);
+}
+.riffside-account :is(.ra-order-status, .ra-home-order-status)[data-ra-order-tone="danger"] {
+    background: var(--ra-danger-soft);
+    color: var(--ra-danger);
+}
+.riffside-account :is(.ra-order-status, .ra-home-order-status)[data-ra-order-tone="active"] {
+    background: var(--ra-accent-soft);
+    color: var(--ra-accent);
+}
+.riffside-account :is(.ra-order-status, .ra-home-order-status)[data-ra-order-tone="waiting"] {
+    background: #fff1cf;
+    color: #734800;
+}
+.riffside-account[data-ra-theme="dark"] :is(.ra-order-status, .ra-home-order-status)[data-ra-order-tone="waiting"] {
+    background: #402d12;
+    color: #ffe2a0;
+}
+.riffside-account :is(.ra-order-status, .ra-home-order-status)[data-ra-order-tone="neutral"] {
+    background: var(--ra-raised);
+    color: var(--ra-muted);
+}
+@media (max-width: 520px) {
+    .riffside-account .ra-home-metrics { gap: 6px; }
+    .riffside-account .ra-home-metric { flex-direction: column; justify-content: center; text-align: center; font-size: 12px; }
+    .riffside-account .ra-home-metric strong { margin-inline-start: 0; }
+    .riffside-account .ra-home-metric svg { display: none; }
 }
 @media (max-width: 420px) {
     .riffside-account .ra-current-order {

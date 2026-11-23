@@ -36,6 +36,9 @@ final class Plugin {
         add_filter('customer_club_appearance_settings',[__CLASS__,'club_appearance']);
         add_filter('customer_club_account_embedded',static function($embedded){return $embedded||(is_account_page()&&is_user_logged_in());});
         Extensions::boot();
+        Navigation::boot();
+        CustomTabs::boot();
+        Dashboard::boot();
     }
     public static function activate() {
         add_option(Appearance::OPTION,Appearance::defaults(),'',false);self::endpoints();Support::types();flush_rewrite_rules(false);
@@ -89,8 +92,11 @@ final class Plugin {
         if(!wp_style_is('riffside-ui-v1','registered'))wp_register_style('riffside-ui-v1',plugins_url('assets/shared/riffside-ui/foundations.css',RIFFSIDE_ACCOUNT_FILE),[],'1.0.1');
         wp_enqueue_style('riffside-account',plugins_url('assets/account.css',RIFFSIDE_ACCOUNT_FILE),['riffside-ui-v1'],RIFFSIDE_ACCOUNT_VERSION);
         wp_add_inline_style('riffside-account',Appearance::css());
-        if(!is_wc_endpoint_url())wp_enqueue_style('riffside-account-home',plugins_url('assets/home.css',RIFFSIDE_ACCOUNT_FILE),['riffside-account'],RIFFSIDE_ACCOUNT_VERSION);
+        wp_enqueue_style('riffside-account-home',plugins_url('assets/home.css',RIFFSIDE_ACCOUNT_FILE),['riffside-account'],RIFFSIDE_ACCOUNT_VERSION);
         if(is_wc_endpoint_url('orders')||is_wc_endpoint_url('view-order'))wp_enqueue_style('riffside-account-orders',plugins_url('assets/orders.css',RIFFSIDE_ACCOUNT_FILE),['riffside-account'],RIFFSIDE_ACCOUNT_VERSION);
+        if (Sections::current() !== '') {
+            wp_enqueue_style('riffside-account-sections', plugins_url('assets/sections.css', RIFFSIDE_ACCOUNT_FILE), ['riffside-account'], RIFFSIDE_ACCOUNT_VERSION);
+        }
         wp_enqueue_script('riffside-account',plugins_url('assets/account.js',RIFFSIDE_ACCOUNT_FILE),[],RIFFSIDE_ACCOUNT_VERSION,true);
         $s=Appearance::settings();wp_localize_script('riffside-account','riffsideAccount',['mode'=>$s['mode'],'defaultMode'=>$s['default_mode']]);
     }
@@ -100,7 +106,7 @@ final class Plugin {
         foreach(['theme','mode','default_mode','palettes'] as $key)$settings[$key]=$panel[$key];
         return $settings;
     }
-    public static function icon($name){$allowed=['account','services','store','customer-club','ticket','download','plugins','corporate','files','logout','arrow-left','check','clock'];if(!in_array($name,$allowed,true))$name='files';return '<svg aria-hidden="true" focusable="false"><use href="'.esc_url(plugins_url('assets/icons.svg',RIFFSIDE_ACCOUNT_FILE)).'#ri-'.$name.'"></use></svg>';}
+    public static function icon($name){$allowed=['account','services','store','customer-club','ticket','download','plugins','corporate','files','logout','arrow-left','check','clock','identity','contact'];if(!in_array($name,$allowed,true))$name='files';return '<svg aria-hidden="true" focusable="false"><use href="'.esc_url(plugins_url('assets/icons.svg',RIFFSIDE_ACCOUNT_FILE)).'#ri-'.$name.'"></use></svg>';}
     public static function url($endpoint='dashboard'){return $endpoint==='customer-logout'?wc_logout_url():wc_get_account_endpoint_url($endpoint);}
     public static function number($value){return strtr(number_format_i18n($value),['0'=>'۰','1'=>'۱','2'=>'۲','3'=>'۳','4'=>'۴','5'=>'۵','6'=>'۶','7'=>'۷','8'=>'۸','9'=>'۹']);}
     public static function title(){global $wp;$items=wc_get_account_menu_items();foreach($items as $key=>$label)if(isset($wp->query_vars[$key]))return wp_strip_all_tags($label);if(isset($wp->query_vars['view-order']))return 'جزئیات سفارش';return 'خانه';}

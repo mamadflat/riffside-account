@@ -2,7 +2,7 @@
 /**
  * Plugin Name: پنل کاربری ریف‌ساید
  * Description: حساب مشتری ووکامرس با تم‌های مستقل و امکانات اختیاری.
- * Version: 1.0.5
+ * Version: 1.2.0
  * Author: Riffside
  * Requires at least: 6.5
  * Requires PHP: 8.0
@@ -17,9 +17,9 @@ defined('ABSPATH') || exit;
 
 define('RIFFSIDE_ACCOUNT_FILE', __FILE__);
 define('RIFFSIDE_ACCOUNT_DIR', __DIR__ . '/');
-define('RIFFSIDE_ACCOUNT_VERSION', '1.0.5');
+define('RIFFSIDE_ACCOUNT_VERSION', '1.2.0');
 
-foreach (['Appearance', 'Dashboard', 'Extensions', 'Orders', 'Support', 'PortalTickets', 'Modules', 'Addons', 'Receipt', 'Plugin'] as $component) {
+foreach (['Appearance', 'Dashboard', 'Extensions', 'Navigation', 'CustomTabs', 'Orders', 'Support', 'PortalTickets', 'Modules', 'Sections', 'Addons', 'Receipt', 'Plugin'] as $component) {
     require_once RIFFSIDE_ACCOUNT_DIR . 'src/' . $component . '.php';
 }
 
