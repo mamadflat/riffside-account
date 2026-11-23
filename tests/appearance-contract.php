@@ -16,7 +16,7 @@ function check($ok, $message) { if (!$ok) { throw new RuntimeException($message)
 $panel = Appearance::defaults();
 check(array_keys(Appearance::presets()) === ['riffside'], 'No customer-specific preset is bundled');
 check($panel['features'] === ['support'=>false, 'licenses'=>false], 'Optional modules are disabled on fresh installs');
-$panel['theme'] = 'yadakhamrah'; $panel['mode'] = 'dark';
+$panel['theme'] = 'invalid-preset'; $panel['mode'] = 'dark';
 $panel['palettes']['dark']['button'] = '#123456';
 $options = [Appearance::OPTION => $panel];
 $club = ['theme' => 'riffside', 'mode' => 'light', 'default_mode' => 'light', 'palettes' => [], 'extension' => 'preserved'];

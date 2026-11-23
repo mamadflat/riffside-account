@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: پنل کاربری ریف‌ساید
- * Description: حساب یکپارچهٔ ووکامرس، باشگاه مشتریان و پشتیبانی با ظاهر قابل تنظیم و فونت میزبان.
- * Version: 0.6.0
+ * Description: حساب مشتری ووکامرس با تم‌های مستقل و امکانات اختیاری.
+ * Version: 1.0.5
  * Author: Riffside
  * Requires at least: 6.5
  * Requires PHP: 8.0
@@ -10,21 +10,24 @@
  * Text Domain: riffside-account
  * License: GPL-2.0-or-later
  */
+
+use Riffside\Account\Plugin;
+
 defined('ABSPATH') || exit;
+
 define('RIFFSIDE_ACCOUNT_FILE', __FILE__);
 define('RIFFSIDE_ACCOUNT_DIR', __DIR__ . '/');
-define('RIFFSIDE_ACCOUNT_VERSION', '0.6.0');
-require_once __DIR__ . '/src/Extensions.php';
-require_once __DIR__ . '/src/Appearance.php';
-require_once __DIR__ . '/src/Support.php';
-require_once __DIR__ . '/src/Plugin.php';
-require_once __DIR__ . '/src/Dashboard.php';
-require_once __DIR__ . '/src/Orders.php';
-register_activation_hook(__FILE__, ['Riffside\Account\Plugin','activate']);
-register_deactivation_hook(__FILE__, static function () { flush_rewrite_rules(false); });
-add_action('plugins_loaded', ['Riffside\Account\Plugin','boot'], 30);
+define('RIFFSIDE_ACCOUNT_VERSION', '1.0.5');
+
+foreach (['Appearance', 'Dashboard', 'Extensions', 'Orders', 'Support', 'PortalTickets', 'Modules', 'Addons', 'Receipt', 'Plugin'] as $component) {
+    require_once RIFFSIDE_ACCOUNT_DIR . 'src/' . $component . '.php';
+}
+
+register_activation_hook(__FILE__, [Plugin::class, 'activate']);
+register_deactivation_hook(__FILE__, [Plugin::class, 'deactivate']);
+add_action('plugins_loaded', [Plugin::class, 'boot'], 30);
 add_action('before_woocommerce_init', static function () {
-    if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+    if (class_exists(\Automattic\WooCommerce\Utilities\FeaturesUtil::class)) {
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+    }
 });
-
-

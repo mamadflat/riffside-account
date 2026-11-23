@@ -15,7 +15,6 @@
 .riffside-account :is(.ra-order-card-head,.ra-order-card-foot,.ra-detail-heading){display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .riffside-account .ra-order-number{display:inline-flex;align-items:center;gap:6px;min-block-size:44px;font-size:15px;font-weight:700;color:var(--ra-text)}
 .riffside-account .ra-order-status{display:inline-flex;align-items:center;padding:4px 10px;border-radius:6px;background:var(--ra-accent-soft);color:var(--ra-accent);font-size:12px;font-weight:600;max-inline-size:100%;overflow-wrap:anywhere}
-.riffside-account .ra-order-status .va-pill{color:inherit;background:none;padding:0;border:0;font:inherit}
 .riffside-account .ra-order-preview{display:flex;align-items:center;gap:16px;margin-block:16px}
 .riffside-account .ra-order-picture{display:grid;place-items:center;flex:0 0 56px;inline-size:56px;block-size:56px;background:var(--ra-raised);border-radius:12px;color:var(--ra-accent)}
 .riffside-account .ra-order-preview>div{min-inline-size:0}.riffside-account .ra-order-preview p{font-size:15px;overflow-wrap:anywhere}.riffside-account .ra-order-preview small{margin-block-start:6px}
@@ -44,7 +43,6 @@
 .riffside-account .ra-detail-payment dl>.ra-total-row{border-block-start:1px solid var(--ra-border);padding-block-start:16px;margin-block-start:16px;font-size:15px;font-weight:700}.riffside-account .ra-total-row dt{font-weight:700;color:var(--ra-text)}
 .riffside-account .ra-detail-payment .ra-order-actions{align-items:stretch}.riffside-account .ra-detail-payment .ra-order-actions a{flex:1 0 auto}
 .riffside-account .ra-order-extensions{grid-column:1/-1;min-inline-size:0}.riffside-account .ra-order-extensions:empty{display:none}
-.riffside-account .ra-order-view .ra-order-tracking{margin-block-end:24px}.riffside-account .ra-order-tracking p{overflow-wrap:anywhere}.riffside-account .ra-order-tracking .ra-button{margin-inline-start:8px}.riffside-account .ra-order-tracking [role=status]{display:block;font-size:13px}
 .riffside-account .ra-order-addresses{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-block:24px}.riffside-account .ra-order-addresses>.ra-card{margin:0}.riffside-account .ra-order-addresses address{padding:0;border:0;margin-block-start:16px;overflow-wrap:anywhere}.riffside-account .ra-order-addresses address p{margin-block-start:12px}
 .riffside-account .ra-customer-note{margin-block-start:20px;padding:16px;background:var(--ra-raised);border-radius:8px}.riffside-account .ra-customer-note h3{font-size:14px}.riffside-account .ra-customer-note p{font-size:14px;margin-block-start:8px;overflow-wrap:anywhere}
 .riffside-account .ra-order-notes ol{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:20px}.riffside-account .ra-order-notes li{padding-inline-start:16px;border-inline-start:2px solid var(--ra-border);margin:0}.riffside-account .ra-order-notes li div{font-size:14px;overflow-wrap:anywhere}.riffside-account .ra-order-notes small{margin-block-end:8px}

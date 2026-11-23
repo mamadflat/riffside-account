@@ -1,69 +1,213 @@
-/* Home widgets share the account palette and the versioned UI foundations. */
-.riffside-account .ra-home{max-inline-size:1120px;margin-inline:auto;display:grid;gap:24px}
-.riffside-account .ra-home :is(h1,h2,h3,p){margin:0}
-.riffside-account .ra-home h1{font-size:26px;overflow-wrap:anywhere}
-.riffside-account .ra-home h2{font-size:17px}
-.riffside-account .ra-home h3{font-size:15px}
-.riffside-account .ra-home-welcome{display:flex;justify-content:space-between;align-items:center;gap:16px}
-.riffside-account .ra-home-welcome p{color:var(--ra-muted);font-size:12px;margin-block-end:8px}
-.riffside-account .ra-home-welcome h1{margin-block-end:8px}
-.riffside-account .ra-home-welcome span:not(.ra-welcome-icon){color:var(--ra-muted);font-size:14px}
-.riffside-account .ra-welcome-icon{display:grid;place-items:center;inline-size:56px;block-size:56px;flex-shrink:0;background:var(--ra-surface);border:1px solid var(--ra-border);border-radius:50%}
-.riffside-account .ra-home-overview{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:16px}
-.riffside-account .ra-home-card{min-inline-size:0;padding:24px;border:1px solid var(--ra-border);border-radius:var(--rs-radius-card,16px);background:var(--ra-surface);color:var(--ra-text);box-shadow:none}
-.riffside-account .ra-home-icon{display:grid;place-items:center;inline-size:40px;block-size:40px;flex:0 0 40px;border-radius:var(--rs-radius-control,8px);background:var(--ra-raised);color:var(--ra-text)}
-.riffside-account .ra-home-icon svg{inline-size:22px;block-size:22px}
-.riffside-account .ra-wallet-heading{display:flex;align-items:center;gap:12px}
-.riffside-account .ra-wallet-heading .ra-text-link{margin-inline-start:auto}
-.riffside-account .ra-text-link{display:inline-flex;align-items:center;gap:6px;min-block-size:44px;font-size:12px;font-weight:600;color:var(--ra-accent);text-decoration:none}
-.riffside-account .ra-text-link svg{inline-size:16px;block-size:16px;flex-shrink:0}
-.riffside-account .ra-wallet-values{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-block:20px 12px}
-.riffside-account .ra-wallet-values>div:first-child{display:grid;gap:6px;min-inline-size:0}
-.riffside-account .ra-wallet-values>div:first-child>span{color:var(--ra-muted);font-size:12px}
-.riffside-account .ra-wallet-values strong{font-size:27px;font-variant-numeric:tabular-nums;line-height:1.9;overflow-wrap:anywhere}
-.riffside-account .ra-coin-balance{display:flex;align-items:baseline;gap:6px;padding:8px 14px;background:var(--ra-accent-soft);color:var(--ra-accent);border-radius:var(--rs-radius-control,8px);flex-shrink:0}
-.riffside-account .ra-coin-balance strong{font-size:21px}.riffside-account .ra-coin-balance span{font-size:12px}
-.riffside-account .ra-wallet>p{font-size:12px;color:var(--ra-muted);margin-block-start:12px}
-.riffside-account .ra-order-totals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.riffside-account .ra-order-totals a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;text-decoration:none}
-.riffside-account .ra-order-totals strong{font-size:30px;line-height:1.4;font-variant-numeric:tabular-nums}
-.riffside-account .ra-order-totals span{font-size:12px}.riffside-account .ra-order-totals svg{color:var(--ra-accent)}
-.riffside-account .ra-home-shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:4px 0}
-.riffside-account .ra-home-shortcuts a{display:grid;justify-items:center;align-content:start;gap:10px;padding:8px 4px;min-block-size:80px;color:var(--ra-text);font-size:13px;text-align:center;text-decoration:none}
-.riffside-account .ra-shortcut-icon{display:grid;place-items:center;inline-size:56px;block-size:56px;border:1px solid var(--ra-border);background:var(--ra-surface);border-radius:16px;color:var(--ra-text)}
-.riffside-account .ra-shortcut-icon svg{inline-size:27px;block-size:27px}
-.riffside-account .ra-home-sections{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px;align-items:start}
-.riffside-account .ra-section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-block-end:16px;flex-wrap:wrap}
-.riffside-account .ra-current-list{display:grid;gap:20px}
-.riffside-account .ra-current-order+.ra-current-order{border-block-start:1px solid var(--ra-border);padding-block-start:20px}
-.riffside-account .ra-order-title{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px}
-.riffside-account .ra-status{padding:4px 10px;background:var(--ra-raised);color:var(--ra-text);border-radius:6px;font-size:11px}
-.riffside-account .ra-home .ra-order-products{font-size:14px;margin-block:14px 6px;overflow-wrap:anywhere}
-.riffside-account .ra-home .ra-order-hint{font-size:12px;color:var(--ra-muted)}
-.riffside-account .ra-order-action{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-block-start:16px}
-.riffside-account .ra-order-action>strong{font-size:14px}.riffside-account .ra-order-action .ra-button{font-size:12px;margin:0}
-.riffside-account .ra-earn{grid-column:2;grid-row:1 / span 2}
-.riffside-account .ra-earn-item{display:flex;gap:12px;padding-block:12px}
-.riffside-account .ra-earn-item+.ra-earn-item{border-block-start:1px solid var(--ra-border);margin-block-start:8px;padding-block-start:20px}
-.riffside-account .ra-earn-item>div{min-inline-size:0}.riffside-account .ra-earn-item h3{margin-block:4px 8px}
-.riffside-account .ra-reward-label{display:inline-block;padding:2px 8px;border-radius:6px;background:var(--ra-accent-soft);color:var(--ra-accent);font-size:12px;font-weight:600}
-.riffside-account .ra-earn-item p{font-size:12px;color:var(--ra-muted);margin-block:10px 4px}
-.riffside-account .ra-home-empty{display:grid;justify-items:center;text-align:center;gap:12px;padding-block:20px}
-.riffside-account .ra-home-empty p{font-size:13px;color:var(--ra-muted)}
-.riffside-account .ra-activity{grid-column:1}
-.riffside-account .ra-activity-empty{display:flex;gap:12px;align-items:center;color:var(--ra-muted)}
-.riffside-account .ra-activity-empty svg{flex-shrink:0}.riffside-account .ra-activity-empty p{font-size:13px}
-.riffside-account .ra-activity ul{list-style:none;padding:0;margin:0;display:grid;gap:16px}
-.riffside-account .ra-activity li{display:flex;gap:12px;align-items:center;margin:0}
-.riffside-account .ra-activity li>div{min-inline-size:0;display:grid;gap:4px}.riffside-account .ra-activity li strong{font-size:13px}.riffside-account .ra-activity li small{font-size:11px;color:var(--ra-muted)}
-.riffside-account .ra-activity li>bdi{margin-inline-start:auto;font-weight:700;font-variant-numeric:tabular-nums}
-.riffside-account .ra-home a:hover{color:var(--ra-accent)}
-.riffside-account .ra-home :is(.ra-order-totals a,.ra-home-shortcuts a):hover{background:var(--ra-raised);border-radius:var(--rs-radius-card,16px)}
-.riffside-account #ra-current-orders{scroll-margin-block-start:110px}
-@media(max-width:1100px){.riffside-account .ra-home-overview{grid-template-columns:1fr}.riffside-account .ra-order-totals a{display:grid;grid-template-columns:auto auto;gap:4px 12px;padding:16px}.riffside-account .ra-order-totals svg{grid-row:span 2}.riffside-account .ra-order-totals strong{font-size:25px}.riffside-account .ra-order-totals span{grid-column:2}.riffside-account .ra-home-sections{grid-template-columns:1fr}.riffside-account .ra-earn{grid-column:auto;grid-row:auto}.riffside-account .ra-activity{grid-column:auto}}
-@media(max-width:760px){.riffside-account .ra-home{gap:20px}.riffside-account .ra-home h1{font-size:22px}.riffside-account .ra-home h2{font-size:16px}.riffside-account .ra-home-welcome>div>span{font-size:12px}.riffside-account .ra-welcome-icon{display:none}.riffside-account .ra-home-card{padding:16px}.riffside-account .ra-wallet-values strong{font-size:25px}.riffside-account .ra-coin-balance strong{font-size:19px}.riffside-account .ra-home-shortcuts{gap:4px}.riffside-account .ra-home-shortcuts a{font-size:11px}.riffside-account .ra-shortcut-icon{inline-size:52px;block-size:52px}.riffside-account .ra-home-sections{gap:16px}.riffside-account .ra-wallet-heading{gap:8px}.riffside-account .ra-wallet-heading .ra-home-icon{inline-size:32px;block-size:32px;flex-basis:32px}.riffside-account .ra-wallet-heading .ra-text-link{font-size:11px}.riffside-account .ra-home .ra-wallet>p{font-size:11px}.riffside-account .ra-earn-item h3{font-size:14px}.riffside-account .ra-earn-item p{font-size:12px}}
-
-.riffside-account .ra-wallet-heading h2{flex:1;min-inline-size:0}
-.riffside-account .ra-text-link{white-space:nowrap;flex-shrink:0}
-.riffside-account .ra-wallet-values strong small{display:inline;font-size:13px;color:var(--ra-muted)}
-.riffside-account .ra-section-heading h2{flex:1;min-inline-size:0}
+/* Dashboard utilities and cards use the account palette. */
+.riffside-account .ra-heading--dashboard {
+    min-block-size: 64px;
+    padding-block: 8px;
+}
+.riffside-account .ra-home {
+    max-inline-size: 1120px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(240px, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+.riffside-account .ra-home > :only-child {
+    grid-column: 1 / -1;
+}
+.riffside-account .ra-home-aside,
+.riffside-account .ra-home-order-info {
+    display: grid;
+    gap: 12px;
+    min-inline-size: 0;
+}
+.riffside-account .ra-home h1,
+.riffside-account .ra-home h2,
+.riffside-account .ra-home p,
+.riffside-account .ra-home dd {
+    margin: 0;
+}
+.riffside-account .ra-home h1 {
+    font-size: clamp(19px, 2vw, 24px);
+    line-height: 1.45;
+}
+.riffside-account .ra-home h2 {
+    font-size: 16px;
+    line-height: 1.5;
+}
+.riffside-account .ra-home-card {
+    min-inline-size: 0;
+    padding: 20px;
+    border: 1px solid var(--ra-border);
+    border-radius: var(--rs-radius-card, 16px);
+    background: var(--ra-surface);
+    color: var(--ra-text);
+}
+.riffside-account .ra-home-section-heading,
+.riffside-account .ra-home-order-title,
+.riffside-account .ra-home-empty {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+}
+.riffside-account .ra-home-section-heading {
+    padding-block-end: 12px;
+    border-block-end: 1px solid var(--ra-border);
+}
+.riffside-account .ra-home-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-block-size: 44px;
+    font-size: 13px;
+    color: var(--ra-text);
+    font-weight: 600;
+    text-decoration: none;
+}
+.riffside-account .ra-home-text-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.riffside-account .ra-home-text-link svg,
+.riffside-account .ra-home-shortcuts a > svg {
+    inline-size: 16px;
+    block-size: 16px;
+    flex: 0 0 16px;
+    color: var(--ra-muted);
+}
+.riffside-account .ra-current-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.riffside-account .ra-current-order {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px 16px;
+    margin: 0;
+    padding-block: 16px;
+}
+.riffside-account .ra-current-order + .ra-current-order {
+    border-block-start: 1px solid var(--ra-border);
+}
+.riffside-account .ra-current-order:last-child {
+    padding-block-end: 0;
+}
+.riffside-account .ra-home-order-info {
+    gap: 5px;
+}
+.riffside-account .ra-home-order-title {
+    justify-content: start;
+    font-size: 14px;
+}
+.riffside-account .ra-home-order-status {
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: var(--ra-raised);
+    font-size: 12px;
+}
+.riffside-account .ra-home-products,
+.riffside-account .ra-home-empty p {
+    color: var(--ra-muted);
+    font-size: 14px;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+}
+.riffside-account .ra-home-order-action {
+    display: grid;
+    justify-items: end;
+    gap: 6px;
+    font-size: 14px;
+}
+.riffside-account .ra-home-order-action .ra-button {
+    margin: 0;
+    min-block-size: 44px;
+    font-size: 13px;
+    white-space: normal;
+}
+.riffside-account .ra-home-empty {
+    padding-block-start: 14px;
+}
+.riffside-account .ra-home-shortcuts {
+    padding: 4px 14px;
+}
+.riffside-account .ra-home-shortcuts a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-block-size: 64px;
+    padding: 8px 4px;
+    color: var(--ra-text);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.riffside-account .ra-home-shortcuts a + a {
+    border-block-start: 1px solid var(--ra-border);
+}
+.riffside-account .ra-home-shortcuts a:hover .ra-home-shortcut-label {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.riffside-account .ra-home-shortcut-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 36px;
+    block-size: 36px;
+    border-radius: var(--rs-radius-control, 8px);
+    background: var(--ra-raised);
+}
+.riffside-account .ra-home-shortcut-icon svg {
+    inline-size: 20px;
+    block-size: 20px;
+}
+.riffside-account .ra-home-shortcut-label {
+    flex: 1;
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+}
+.riffside-account .ra-home-wallet-values {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 18px;
+    margin: 12px 0 0;
+}
+.riffside-account .ra-home-wallet-values dt {
+    font-size: 12px;
+    color: var(--ra-muted);
+}
+.riffside-account .ra-home-wallet-values dd {
+    font-size: 16px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+@media (min-width: 761px) {
+    .riffside-account .ra-heading--dashboard {
+        justify-content: flex-end;
+    }
+    .riffside-account .ra-heading--dashboard .ra-heading-title {
+        display: none;
+    }
+}
+@media (max-width: 1000px) {
+    .riffside-account .ra-home {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+}
+@media (max-width: 760px) {
+    .riffside-account .ra-home-card {
+        padding: 14px;
+    }
+    .riffside-account .ra-home-shortcuts {
+        padding-block: 2px;
+    }
+}
+@media (max-width: 420px) {
+    .riffside-account .ra-current-order {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

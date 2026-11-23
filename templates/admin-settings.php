@@ -1,6 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 use Riffside\Account\Appearance;
+use Riffside\Account\Modules;
 use Riffside\Account\Plugin;
 $s=Appearance::settings();$option=Appearance::OPTION;
 $labels=['background'=>'زمینهٔ صفحه','surface'=>'زمینهٔ کارت','raised'=>'زمینهٔ فرعی','text'=>'متن اصلی','muted'=>'متن فرعی','border'=>'حاشیه','accent'=>'لینک و آیکون','accent_soft'=>'زمینهٔ تأکیدی','button'=>'دکمه','button_hover'=>'دکمه هنگام اشاره','button_text'=>'متن دکمه','success'=>'متن موفقیت','success_soft'=>'زمینهٔ موفقیت','danger'=>'متن خطا','danger_soft'=>'زمینهٔ خطا'];
@@ -17,7 +18,7 @@ $license_provider=has_action('woocommerce_account_'.$s['license_endpoint'].'_end
  <div id="ra-features" data-ra-settings-panel="features">
   <section class="ra-admin-intro"><div><h2>امکانات مورد نیاز این سایت</h2><p>هر بخش را فقط در سایتی که به آن نیاز دارد فعال کن. تغییرات پس از ذخیره اعمال می‌شوند.</p></div><span class="ra-admin-badge">داشبورد مستقل</span></section>
   <div class="ra-feature-grid">
-   <?php foreach(['support'=>['ticket','تیکت و پشتیبانی','مشتری از داخل همین پنل تیکت ثبت می‌کند و پاسخ مدیر را می‌بیند.','با خاموش‌کردن، منو، کارت‌ها و ثبت و نمایش تیکت بسته می‌شوند.'],'licenses'=>['plugins','لایسنس‌های مشتری','بخش لایسنس افزونهٔ موجود را به حساب مشتری متصل می‌کند.','مدیریت و صدور لایسنس با همان افزونهٔ لایسنس است.']] as $key=>$item): ?>
+   <?php foreach(['support'=>['ticket','تیکت و پشتیبانی','مشتری از داخل همین پنل تیکت ثبت می‌کند و پاسخ مدیر را می‌بیند.','با خاموش‌کردن، بخش پشتیبانی پنل از دسترس مشتری خارج می‌شود.'],'licenses'=>['plugins','لایسنس‌های آمادهٔ خریداری‌شده','کدهای آماده‌ را برای محصولات ووکامرس وارد کن تا افزونهٔ تحویل لایسنس پس از تأیید پرداخت به مشتری بدهد.','این کلید نمایش کدهای آماده در حساب مشتری را کنترل می‌کند. موجودی و تحویل در افزونهٔ مدیریت لایسنس محصولات تنظیم می‌شوند.']] as $key=>$item): ?>
    <section class="ra-feature-card" data-ra-feature-card="<?php echo esc_attr($key); ?>">
     <div class="ra-feature-heading"><span class="ra-feature-icon"><?php echo Plugin::icon($item[0]); ?></span><span class="ra-feature-status" data-ra-feature-status><?php echo $s['features'][$key]?'فعال':'غیرفعال'; ?></span></div>
     <h2><?php echo esc_html($item[1]); ?></h2><p><?php echo esc_html($item[2]); ?></p><p class="description"><?php echo esc_html($item[3]); ?></p>
@@ -45,8 +46,10 @@ $license_provider=has_action('woocommerce_account_'.$s['license_endpoint'].'_end
   </div>
  </div>
  <div id="ra-connections" data-ra-settings-panel="connections">
-  <section><h2>اتصال لایسنس</h2><p>پنل از بخش حساب کاربریِ افزونهٔ لایسنس نصب‌شده استفاده می‌کند.</p><span class="ra-admin-badge"><?php echo $license_provider?'افزونهٔ ارائه‌دهنده شناسایی شد':'ارائه‌دهنده‌ای برای این مسیر شناسایی نشد'; ?></span><label for="ra-license-endpoint">نام مسیر حساب در افزونهٔ لایسنس</label><input id="ra-license-endpoint" name="<?php echo esc_attr($option); ?>[license_endpoint]" value="<?php echo esc_attr($s['license_endpoint']); ?>" dir="ltr" pattern="[a-z][a-z0-9-]{1,49}" maxlength="50"><p class="description">نام مسیر را از تنظیمات افزونهٔ لایسنس بگیر؛ پیش‌فرض <code dir="ltr">licenses</code> است. بدون ارائه‌دهنده، بخش جدیدی ساخته نمی‌شود.</p></section>
-  <section><h2>اتصال پشتیبانی</h2><p><?php echo class_exists('Riffside_Portal')?'پرتال ریف‌ساید شناسایی شده؛ گفت‌وگوها از همان پرتال نمایش داده می‌شوند.':'تیکت داخلی پنل آماده است. پس از فعال‌سازی، منوی تیکت‌ها برای مدیر و بخش پشتیبانی برای مشتری ظاهر می‌شود.'; ?></p></section>
+  <section><h2>اتصال لایسنس‌های آماده</h2><span class="ra-admin-badge"><?php echo $license_provider?'افزونهٔ ارائه‌دهنده شناسایی شد':'ارائه‌دهنده‌ای برای این مسیر شناسایی نشد'; ?></span>
+   <?php if (Modules::prepaid_license_provider_available()): ?><p><a class="button" href="<?php echo esc_url(admin_url('admin.php?page=yhlm')); ?>">مدیریت موجودی لایسنس</a></p><?php endif; ?>
+   <label for="ra-license-endpoint">نام مسیر حساب در افزونهٔ لایسنس</label><input id="ra-license-endpoint" name="<?php echo esc_attr($option); ?>[license_endpoint]" value="<?php echo esc_attr($s['license_endpoint']); ?>" dir="ltr" pattern="[a-z][a-z0-9-]{1,49}" maxlength="50"><p class="description">پیش‌فرض <code dir="ltr">licenses</code> است.</p></section>
+  <section><h2>پشتیبانی کاربران</h2><p>در صورت فعال‌بودن پشتیبانی، مشتریان تیکت را در حساب کاربری ثبت می‌کنند و مدیر از منوی «پنل ریف‌ساید» به آن پاسخ می‌دهد.</p></section>
   <?php if(class_exists('\Customer_Club\Admin')): ?><section><h2>باشگاه مشتریان</h2><p>موجودی و تراکنش‌ها از افزونهٔ باشگاه خوانده می‌شوند. داخل این پنل، رنگ‌ها و حالت نمایش باشگاه از تنظیمات همین پنل پیروی می‌کند. تنظیمات مستقل باشگاه برای نمایش بیرون از پنل حفظ می‌شود.</p><a class="button" href="<?php echo esc_url(\Customer_Club\Admin::dashboard_url('settings',['section'=>'appearance'])); ?>">تنظیمات نمایش مستقل باشگاه</a></section><?php endif; ?>
  </div>
  <div class="ra-settings-save"><span data-ra-save-status role="status">تنظیمات ذخیره‌شدهٔ این سایت</span><button type="submit" id="submit" class="button button-primary">ذخیرهٔ تنظیمات پنل</button></div>
