@@ -26,14 +26,23 @@ final class Orders {
         $args['orderby']='ID';$args['order']='DESC';$args['page']=self::page($args['page']??1);
         return $args;
     }
-    public static function counts() {
-        $counts=[];
+    public static function counts(array $counts = []) {
         foreach(self::groups() as $key=>$group){
+            if (isset($counts[$key])) continue;
             if(!$group['statuses']){$counts[$key]=0;continue;}
             $result=wc_get_orders(['customer_id'=>get_current_user_id(),'status'=>$group['statuses'],'limit'=>1,'page'=>1,'return'=>'ids','paginate'=>true]);
             $counts[$key]=(int)$result->total;
         }
         return $counts;
+    }
+    public static function tone($status) {
+        return match ($status) {
+            'completed' => 'success',
+            'cancelled', 'failed' => 'danger',
+            'pending', 'on-hold' => 'waiting',
+            'processing' => 'active',
+            default => 'neutral',
+        };
     }
     public static function url($group='current',$page=1) {
         return add_query_arg('ra_group',self::group($group),wc_get_endpoint_url('orders',self::page($page),wc_get_page_permalink('myaccount')));
@@ -74,9 +83,10 @@ final class Orders {
         $actions=wc_get_account_orders_actions($order);
         if($detail)unset($actions['view']);
         elseif(isset($actions['view'])){$actions['view']['url']=self::view_url($order,$page);$actions['view']['name']='جزئیات سفارش';}
+        $primary = isset($actions['pay']) ? 'pay' : 'view';
         foreach($actions as $key=>$action){
             $label=$action['aria-label']??($action['name'].'، سفارش '.$order->get_order_number());
-            echo '<a class="ra-button '.($key==='pay'?'ra-primary ':'').esc_attr(sanitize_html_class($key)).'" href="'.esc_url($action['url']).'" aria-label="'.esc_attr($label).'">'.esc_html($action['name']).'</a>';
+            echo '<a class="ra-button '.($key===$primary?'ra-primary ':'').esc_attr(sanitize_html_class($key)).'" href="'.esc_url($action['url']).'" aria-label="'.esc_attr($label).'">'.esc_html($action['name']).'</a>';
         }
     }
 }

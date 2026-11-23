@@ -1,0 +1,314 @@
+/* The account shell only loads this sheet on non-club interior routes. */
+.riffside-account .ra-heading-title .ra-workspace-title {
+    font-size: clamp(13px, 2.2vw, 17px);
+    font-weight: 700;
+    line-height: 1.45;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+.riffside-account .ra-content[data-ra-section] {
+    --ra-section-gap: clamp(12px, 2vw, 20px);
+    --ra-section-padding: clamp(16px, 2.6vw, 28px);
+    --ra-section-radius: 16px;
+    --ra-section-surface: var(--ra-surface);
+}
+
+.riffside-account .ra-content[data-ra-section] > :is(.ra-section-heading, .rp-root, .ahrari-license-account, .ra-extension, .woocommerce-EditAccountForm, .woocommerce-Addresses, .woocommerce-MyAccount-paymentMethods, .woocommerce-notices-wrapper, form, table, .woocommerce-info) {
+    max-inline-size: 1120px;
+    margin-inline: auto;
+}
+
+.riffside-account .ra-content[data-ra-section] .ra-section-heading,
+.riffside-account .ra-content[data-ra-section="licenses"] .rl-account-header {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    min-inline-size: 0;
+    padding: var(--ra-section-padding);
+    margin-block: 0 var(--ra-section-gap);
+    border: 1px solid var(--ra-border);
+    border-inline-start: 3px solid var(--ra-accent);
+    border-radius: var(--ra-section-radius);
+    background: var(--ra-section-surface);
+}
+.riffside-account .ra-content[data-ra-section] .ra-section-heading > div { flex: 1 1 150px; min-inline-size: 0; }
+.riffside-account .ra-content[data-ra-section] .ra-section-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 46px;
+    inline-size: 46px;
+    block-size: 46px;
+    border-radius: 12px;
+    background: var(--ra-accent-soft);
+    color: var(--ra-accent);
+}
+.riffside-account .ra-content[data-ra-section] .ra-section-icon svg { inline-size: 24px; block-size: 24px; }
+.riffside-account .ra-content[data-ra-section] .ra-section-heading h1,
+.riffside-account .ra-content[data-ra-section="licenses"] .rl-account-header h2 {
+    color: var(--ra-text);
+    font-size: clamp(20px, 3vw, 28px);
+    line-height: 1.45;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+.riffside-account .ra-content[data-ra-section] .ra-section-heading p {
+    color: var(--ra-muted);
+    font-size: 13px;
+    line-height: 1.9;
+    margin-block: 4px 0;
+}
+.riffside-account .ra-content[data-ra-section] .ra-section-heading .ra-button { margin: 0; }
+
+.riffside-account .ra-content[data-ra-section] :is(.ra-button, .rp-root .button, .ahrari-license-account .button, .yhlm-copy, .woocommerce-Address-title .edit, .woocommerce-MyAccount-downloads-file, .woocommerce-MyAccount-paymentMethods .button, .woocommerce-EditAccountForm button[name="save_account_details"], button[name="save_address"], :where(#add_payment_method) button[type="submit"]) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-sizing: border-box;
+    min-block-size: 44px;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    padding: 9px 14px;
+    border: 1px solid var(--ra-border);
+    border-radius: var(--ra-button-radius, 10px);
+    background: var(--ra-section-surface);
+    color: var(--ra-text);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1.65;
+    text-align: center;
+    text-decoration: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+}
+.riffside-account .ra-content[data-ra-section] :is(.ra-button, .rp-root .button, .ahrari-license-account .button, .yhlm-copy, .woocommerce-Address-title .edit, .woocommerce-MyAccount-paymentMethods .button):hover {
+    border-color: var(--ra-accent);
+    background: var(--ra-raised);
+}
+.riffside-account .ra-content[data-ra-section] :is(.ra-button.ra-primary, .rp-form .button[type="submit"], .ahrari-license-account .button.rl-primary, .woocommerce-MyAccount-downloads-file.button, .woocommerce-EditAccountForm button[name="save_account_details"], button[name="save_address"], :where(#add_payment_method) button[type="submit"]) {
+    border-color: transparent;
+    background: var(--ra-button);
+    color: var(--ra-button-text);
+}
+.riffside-account .ra-content[data-ra-section] :is(.ra-button.ra-primary, .rp-form .button[type="submit"], .ahrari-license-account .button.rl-primary, .woocommerce-MyAccount-downloads-file.button, .woocommerce-EditAccountForm button[name="save_account_details"], button[name="save_address"], :where(#add_payment_method) button[type="submit"]):hover {
+    border-color: transparent;
+    background: var(--ra-button-hover);
+    color: var(--ra-button-text);
+}
+.riffside-account .ra-content[data-ra-section] :is(.ra-order-actions .cancel, .rl-disconnect, .woocommerce-MyAccount-paymentMethods .delete) {
+    color: var(--ra-danger);
+}
+.riffside-account .ra-content[data-ra-section] :is(.ra-order-actions .cancel, .rl-disconnect, .woocommerce-MyAccount-paymentMethods .delete):hover {
+    background: var(--ra-danger-soft);
+    border-color: var(--ra-danger);
+}
+.riffside-account .ra-content[data-ra-section] :is(.ra-button, .rp-form button, .ahrari-license-account .button):disabled { cursor: not-allowed; opacity: .6; }
+.riffside-account .ra-content[data-ra-section] :is(.ra-section-heading, .ra-orders, .ra-order-view, .rp-root, .ahrari-license-account, .woocommerce-EditAccountForm, .woocommerce-address-fields, .woocommerce-Addresses, .ra-extension) :is(a, button, input, select, textarea, summary):not(:where(.customer-club-theme *)):focus-visible {
+    outline: 2px solid var(--ra-accent);
+    outline-offset: 3px;
+}
+
+.riffside-account .ra-content[data-ra-section] :is(.ra-order-card, .ra-order-empty, .ra-detail-layout > .ra-card, .ra-order-addresses > .ra-card, .rp-card, .rp-empty, .ahrari-license-card, .rl-empty, .rl-account-help, .yhlm-card, .woocommerce-EditAccountForm, .woocommerce-address-fields, .woocommerce-Address, :where(#add_payment_method), .ra-extension) {
+    box-sizing: border-box;
+    min-inline-size: 0;
+    padding: var(--ra-section-padding);
+    border: 1px solid var(--ra-border);
+    border-radius: var(--ra-section-radius);
+    background: var(--ra-section-surface);
+    color: var(--ra-text);
+}
+.riffside-account .ra-content[data-ra-section] :is(.woocommerce-EditAccountForm, .woocommerce-address-fields, .rp-form, .ra-support-form, .rl-domain-form) :is(input:not([type="hidden"],[type="checkbox"],[type="radio"],[type="submit"]), textarea, select) {
+    box-sizing: border-box;
+    inline-size: 100%;
+    max-inline-size: 100%;
+    min-inline-size: 0;
+    min-block-size: 44px;
+    border: 1px solid var(--ra-border);
+    border-radius: 10px;
+    padding: 9px 12px;
+    background: var(--ra-raised);
+    color: var(--ra-text);
+    font: inherit;
+    font-size: 16px;
+}
+.riffside-account .ra-content[data-ra-section] :is(.woocommerce-EditAccountForm, .woocommerce-address-fields, .rp-form, .ra-support-form, .rl-domain-form) :is(label, legend) {
+    color: var(--ra-text);
+    font-size: 13px;
+    font-weight: 650;
+}
+.riffside-account .ra-content[data-ra-section] :is(.woocommerce-EditAccountForm, .woocommerce-address-fields, .rp-form, .ra-support-form) :is(input[dir="ltr"], input[type="email"], input[type="tel"]) {
+    direction: ltr;
+    text-align: start;
+    unicode-bidi: isolate;
+}
+.riffside-account .ra-content[data-ra-section] :is(.rp-form, .ra-support-form) textarea { resize: vertical; }
+
+/* Orders and their details. */
+.riffside-account .ra-content[data-ra-section="orders"] .ra-order-tabs { gap: 8px; padding: 0; border: 0; background: transparent; }
+.riffside-account .ra-content[data-ra-section="orders"] .ra-order-tabs a {
+    justify-content: flex-start;
+    border: 1px solid var(--ra-border);
+    background: var(--ra-section-surface);
+    color: var(--ra-text);
+    border-radius: 12px;
+    padding-inline: 12px;
+}
+.riffside-account .ra-content[data-ra-section="orders"] .ra-order-tabs a[aria-current="page"] {
+    border-color: var(--ra-accent);
+    background: var(--ra-accent-soft);
+    color: var(--ra-accent);
+}
+.riffside-account .ra-content[data-ra-section="orders"] .ra-order-tabs a:not([aria-current="page"]):hover { background: var(--ra-raised); }
+.riffside-account .ra-content[data-ra-section="orders"] .ra-order-tabs strong { margin-inline-start: auto; }
+.riffside-account .ra-content[data-ra-section="orders"] .ra-order-tabs svg { inline-size: 18px; block-size: 18px; flex: none; }
+.riffside-account .ra-content[data-ra-section="orders"] .ra-order-card-head { border-block-end: 1px solid var(--ra-border); padding-block-end: 10px; }
+.riffside-account .ra-content[data-ra-section="orders"] .ra-order-amount small { color: var(--ra-muted); }
+.riffside-account .ra-content[data-ra-section="view-order"] .ra-order-state { margin-block-end: var(--ra-section-gap); }
+.riffside-account .ra-content[data-ra-section="view-order"] .ra-detail-layout { gap: var(--ra-section-gap); }
+.riffside-account .ra-content[data-ra-section="view-order"] .ra-total-row {
+    padding: 12px 10px;
+    border-radius: 8px;
+    background: var(--ra-raised);
+}
+
+/* Support inbox and conversation. */
+.riffside-account .ra-content[data-ra-section="tickets"] .rp-root { --rp-accent: var(--ra-accent); }
+.riffside-account .ra-content[data-ra-section="tickets"] .rp-ticket-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, .85fr);
+    align-items: start;
+    gap: var(--ra-section-gap);
+}
+.riffside-account .ra-content[data-ra-section="tickets"] .rp-ticket-list { display: grid; gap: 10px; min-inline-size: 0; }
+.riffside-account .ra-content[data-ra-section="tickets"] .rp-ticket-layout :is(.rp-card, .rp-empty) { margin-block: 0; }
+.riffside-account .ra-content[data-ra-section="tickets"] :is(.rp-ticket-row, .rp-ticket-heading) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+}
+.riffside-account .ra-content[data-ra-section="tickets"] .rp-ticket-row { padding-block: 12px; }
+.riffside-account .ra-content[data-ra-section="tickets"] .rp-ticket-row a { display: inline-flex; align-items: center; min-block-size: 44px; color: var(--ra-text); }
+.riffside-account .ra-content[data-ra-section="tickets"] :is(.rp-ticket-row small, .rp-form p, .rp-empty p, .ra-support-form label) { color: var(--ra-muted); }
+.riffside-account .ra-content[data-ra-section="tickets"] .rp-ticket-status {
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: var(--ra-accent-soft);
+    color: var(--ra-accent);
+    font-size: 12px;
+}
+.riffside-account .ra-content[data-ra-section="tickets"] .rp-ticket-status[data-ra-ticket-status="closed"] { background: var(--ra-raised); color: var(--ra-muted); }
+.riffside-account .ra-content[data-ra-section="tickets"] :is(.rp-message, .ra-message) {
+    padding: 14px;
+    border: 1px solid var(--ra-border);
+    border-radius: 12px;
+    background: var(--ra-raised);
+    color: var(--ra-text);
+}
+.riffside-account .ra-content[data-ra-section="tickets"] :is(.rp-message-staff, .ra-message-staff) {
+    border-inline-start: 3px solid var(--ra-accent);
+    background: var(--ra-accent-soft);
+}
+.riffside-account .ra-content[data-ra-section="tickets"] :is(.rp-ticket-back, .rp-files a) { display: inline-flex; align-items: center; min-block-size: 44px; }
+.riffside-account .ra-content[data-ra-section="tickets"] .rp-ticket-detail .rp-prose { margin-block: 16px; padding-block: 12px; border-block-start: 1px solid var(--ra-border); }
+.riffside-account .ra-content[data-ra-section="tickets"] :is(.rp-form, .ra-support-form) { margin-block-end: 0; gap: 12px; }
+.riffside-account .ra-content[data-ra-section="tickets"] .rp-form .button { justify-self: start; }
+.riffside-account .ra-content[data-ra-section="tickets"] #ra-new-ticket { scroll-margin-block-start: 110px; }
+
+/* Keep the providers' license, key and download handling. */
+.riffside-account .ra-content[data-ra-section="licenses"] .rl-account-header { display: block; }
+.riffside-account .ra-content[data-ra-section="licenses"] .rl-license-grid { gap: var(--ra-section-gap); }
+.riffside-account .ra-content[data-ra-section="licenses"] .rl-product-card > h3 {
+    margin-block: 0 12px;
+    padding-block-end: 10px;
+    border-block-end: 1px solid var(--ra-border);
+    overflow-wrap: anywhere;
+}
+.riffside-account .ra-content[data-ra-section="licenses"] .rl-product-license > summary { gap: 8px; }
+.riffside-account .ra-content[data-ra-section="licenses"] .rl-product-license > summary::after { content: '+'; font-size: 18px; }
+.riffside-account .ra-content[data-ra-section="licenses"] .rl-product-license[open] > summary::after { content: '−'; }
+.riffside-account .ra-content[data-ra-section="licenses"] .rl-license-entry {
+    min-inline-size: 0;
+    padding: 14px;
+    border: 1px solid var(--ra-border);
+    border-radius: 12px;
+    background: var(--ra-background);
+}
+.riffside-account .ra-content[data-ra-section="licenses"] .rl-state-connected { color: var(--ra-success); background: var(--ra-success-soft); }
+.riffside-account .ra-content[data-ra-section="licenses"] .rl-state-invalid { color: var(--ra-danger); background: var(--ra-danger-soft); }
+.riffside-account .ra-content[data-ra-section="licenses"] :is(.rl-product-actions, .rl-domain-actions, .rl-key-row, .yhlm-code) { min-inline-size: 0; gap: 8px; }
+.riffside-account .ra-content[data-ra-section="licenses"] .rl-copy-feedback:empty { display: none; }
+.riffside-account .ra-content[data-ra-section="licenses"] .rl-order-link { display: inline-flex; align-items: center; min-block-size: 44px; }
+
+/* Native account forms and downloads. */
+.riffside-account .ra-content[data-ra-section] :is(.woocommerce-EditAccountForm, .woocommerce-address-fields__field-wrapper) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 16px;
+}
+.riffside-account .ra-content[data-ra-section] :is(.woocommerce-EditAccountForm, .woocommerce-address-fields__field-wrapper) > :not(.form-row-first, .form-row-last) { grid-column: 1 / -1; }
+.riffside-account .ra-content[data-ra-section] :is(.woocommerce-EditAccountForm, .woocommerce-address-fields__field-wrapper) > .form-row {
+    float: none;
+    inline-size: auto;
+    min-inline-size: 0;
+    padding: 0;
+    margin: 0;
+}
+.riffside-account .ra-content[data-ra-section] .woocommerce-EditAccountForm > .clear { display: none; }
+.riffside-account .ra-content[data-ra-section] .woocommerce-EditAccountForm fieldset {
+    border: 1px solid var(--ra-border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin: 0;
+    min-inline-size: 0;
+}
+.riffside-account .ra-content[data-ra-section="edit-address"] .woocommerce-Addresses {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--ra-section-gap);
+}
+.riffside-account .ra-content[data-ra-section="edit-address"] .woocommerce-Addresses::before,
+.riffside-account .ra-content[data-ra-section="edit-address"] .woocommerce-Addresses::after { display: none; }
+.riffside-account .ra-content[data-ra-section="edit-address"] .woocommerce-Addresses > .woocommerce-Address { float: none; inline-size: auto; max-inline-size: none; }
+.riffside-account .ra-content[data-ra-section="edit-address"] .woocommerce-Address-title { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.riffside-account .ra-content[data-ra-section="edit-address"] .woocommerce-Address address { padding: 10px 0 0; border: 0; overflow-wrap: anywhere; }
+.riffside-account .ra-content[data-ra-section] :is(.woocommerce-table--order-downloads, .woocommerce-MyAccount-downloads, .woocommerce-MyAccount-paymentMethods) {
+    inline-size: 100%;
+    border: 1px solid var(--ra-border);
+    border-radius: var(--ra-section-radius);
+    background: var(--ra-section-surface);
+}
+.riffside-account .ra-content[data-ra-section] :is(.woocommerce-table--order-downloads, .woocommerce-MyAccount-downloads, .woocommerce-MyAccount-paymentMethods) :is(th, td) {
+    min-inline-size: 0;
+    padding: 12px;
+    text-align: start;
+    overflow-wrap: anywhere;
+}
+.riffside-account .ra-content[data-ra-section="downloads"] .woocommerce-info,
+.riffside-account .ra-content[data-ra-section="payment-methods"] :is(.woocommerce-info, .woocommerce-message) {
+    padding: var(--ra-section-padding);
+    border: 1px solid var(--ra-border);
+    border-radius: var(--ra-section-radius);
+    background: var(--ra-section-surface);
+    color: var(--ra-text);
+}
+.riffside-account .ra-content[data-ra-section] .woocommerce-info a.wc-forward { float: none; inline-size: fit-content; margin-block: 8px; }
+@media (max-width: 920px) {
+    .riffside-account .ra-content[data-ra-section="tickets"] .rp-ticket-layout { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 660px) {
+    .riffside-account .ra-content[data-ra-section="licenses"] .rl-license-grid,
+    .riffside-account .ra-content[data-ra-section="edit-address"] .woocommerce-Addresses,
+    .riffside-account .ra-content[data-ra-section] :is(.woocommerce-EditAccountForm, .woocommerce-address-fields__field-wrapper) { grid-template-columns: minmax(0, 1fr); }
+    .riffside-account .ra-content[data-ra-section="orders"] .ra-order-tabs a { padding-inline: 6px; justify-content: center; }
+    .riffside-account .ra-content[data-ra-section="orders"] .ra-order-tabs strong { margin-inline-start: 0; }
+    .riffside-account .ra-content[data-ra-section="orders"] .ra-order-tabs svg { display: none; }
+    .riffside-account .ra-content[data-ra-section="tickets"] .rp-form .button { justify-self: stretch; }
+    .riffside-account .ra-content[data-ra-section="licenses"] :is(.rl-key-row, .rl-domain-actions) { flex-wrap: wrap; }
+    .riffside-account .ra-content[data-ra-section="licenses"] :is(.rl-copy, .rl-domain-actions .button) { flex: 1 1 auto; }
+}

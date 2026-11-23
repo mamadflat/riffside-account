@@ -135,13 +135,31 @@ final class PortalTickets {
             $ticket = get_post($selected);
             if (!$ticket || $ticket->post_type !== 'rp_ticket' || !self::allowed($selected)) return self::blank('تیکت در دسترس نیست.', 'از فهرست تیکت‌های حساب خودت وارد شو.');
             $return = add_query_arg('rp_ticket', $selected, self::url());
-            return '<a href="' . esc_url(self::url()) . '">همه تیکت‌ها</a><article class="rp-card"><h2>' . self::e($ticket->post_title) . '</h2><p>' . (self::meta($selected, 'status') === 'closed' ? 'بسته‌شده' : 'باز') . '</p><div class="rp-prose">' . nl2br(self::e($ticket->post_content)) . '</div>' . self::thread($selected) . self::file_list($selected) . self::reply_form($selected, $return) . self::upload_form($selected, $return) . '</article>';
+            return '<a class="rp-ticket-back" href="' . esc_url(self::url()) . '">برگشت به تیکت‌ها</a>'
+                . '<article class="rp-card rp-ticket-detail"><header class="rp-ticket-heading"><h2>' . self::e($ticket->post_title) . '</h2>' . self::ticket_badge($selected) . '</header>'
+                . '<div class="rp-prose">' . nl2br(self::e($ticket->post_content)) . '</div>'
+                . self::thread($selected) . self::file_list($selected) . self::reply_form($selected, $return) . self::upload_form($selected, $return) . '</article>';
         }
         $html = '';
         $items = self::owned('rp_ticket');
-        if (!$items) $html .= self::blank('هنوز تیکتی نداری.', 'برای پشتیبانی افزونه یا ادامه گفت‌وگو، درخواستت را در فرم زیر بنویس.');
-        foreach ($items as $item) $html .= '<article class="rp-card"><h3><a href="' . esc_url(add_query_arg('rp_ticket', $item->ID, self::url())) . '">' . self::e($item->post_title) . '</a></h3><p>' . (self::meta($item->ID, 'status') === 'closed' ? 'بسته‌شده' : 'باز') . '</p></article>';
-        return $html . '<div class="rp-card"><h2>تیکت تازه</h2>' . self::form_start('ticket', self::url()) . '<label>موضوع<input name="subject" maxlength="180" required></label><label>نام محصول یا پروژه<input name="context" maxlength="180"></label><label>چه کمکی نیاز داری؟<textarea name="message" rows="6" maxlength="16000" required></textarea></label><p>شرح مشکل و مراحل تکرار آن را بنویس. رمز عبور را در متن تیکت وارد نکن.</p><button class="button" type="submit">ثبت تیکت</button></form></div>';
+        if (!$items) $html .= self::blank('هنوز تیکتی نداری', 'اگر برای خرید یا استفاده از محصول کمکی می‌خواهی، فرم تیکت را پر کن.');
+        foreach ($items as $item) {
+            $link = add_query_arg('rp_ticket', $item->ID, self::url());
+            $date = get_the_date('', $item);
+            $html .= '<article class="rp-card rp-ticket-row"><div><h3><a href="' . esc_url($link) . '">' . self::e($item->post_title) . '</a></h3>'
+                . '<small>ثبت‌شده در ' . self::e($date) . '</small></div>' . self::ticket_badge($item->ID) . '</article>';
+        }
+        return '<div class="rp-ticket-layout"><section class="rp-ticket-list" aria-label="تیکت‌های من">' . $html . '</section>'
+            . '<section id="ra-new-ticket" class="rp-card rp-ticket-compose"><h2>تیکت جدید</h2>' . self::form_start('ticket', self::url())
+            . '<label>موضوع<input name="subject" maxlength="180" required></label><label>نام محصول یا پروژه<input name="context" maxlength="180"></label>'
+            . '<label>چه کمکی نیاز داری؟<textarea name="message" rows="5" maxlength="16000" required></textarea></label>'
+            . '<p>شرح مشکل و مراحل تکرار آن را بنویس. رمز عبور را در متن تیکت وارد نکن.</p><button class="button" type="submit">ثبت تیکت</button></form></section></div>';
+    }
+
+    private static function ticket_badge($id) {
+        $closed = self::meta($id, 'status') === 'closed';
+        return '<span class="rp-ticket-status" data-ra-ticket-status="' . ($closed ? 'closed' : 'open') . '">'
+            . ($closed ? 'بسته‌شده' : 'باز') . '</span>';
     }
 
     private static function thread($parent) {

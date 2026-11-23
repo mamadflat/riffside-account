@@ -20,4 +20,6 @@ jobs:
       - run: php tests/dashboard.php
       - run: php tests/dashboard-legacy.php
       - run: php tests/orders.php
+      - run: php tests/theme-account.php
+      - run: php tests/sections.php
       - run: node --test tests/*.test.cjs

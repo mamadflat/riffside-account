@@ -5,7 +5,14 @@
  var policy=['light','dark','both'].includes(config.mode)?config.mode:'light';
  var initial=config.defaultMode==='dark'?'dark':'light',mode=policy==='both'?initial:policy;
  if(policy==='both'){try{var saved=localStorage.getItem('riffside-account-mode');if(saved==='dark'||saved==='light')mode=saved;}catch(error){}}
- function apply(){root.dataset.raTheme=mode;document.dispatchEvent(new CustomEvent('riffside:appearance',{detail:{mode:mode}}));var toggle=root.querySelector('[data-ra-theme-toggle]');if(toggle){toggle.textContent=mode==='dark'?'تم روشن':'تم تیره';toggle.setAttribute('aria-pressed',String(mode==='dark'));}}
+ function apply(){
+  root.dataset.raTheme=mode;
+  document.dispatchEvent(new CustomEvent('riffside:appearance',{detail:{mode:mode}}));
+  root.querySelectorAll('[data-ra-theme-toggle]').forEach(function(toggle){
+   toggle.textContent=mode==='dark'?'تم روشن':'تم تیره';
+   toggle.setAttribute('aria-pressed',String(mode==='dark'));
+  });
+ }
  apply();
  window.addEventListener('storage',function(event){if(policy!=='both'||(event.key!=='riffside-account-mode'&&event.key!==null))return;try{var saved=localStorage.getItem('riffside-account-mode');mode=saved==='light'||saved==='dark'?saved:initial;}catch(error){mode=initial;}apply();});
  root.addEventListener('click',function(event){

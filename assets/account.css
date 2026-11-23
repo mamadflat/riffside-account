@@ -45,6 +45,12 @@ body.ra-dashboard-document{margin:0;padding:0!important;background:var(--yh-page
 
 
 html:not(.ra-js) .riffside-account button.ra-menu-toggle,html:not(.ra-js) .riffside-account button.ra-menu-close{display:none}
+.riffside-account .ra-sidebar-theme { display: none; }
+@media (max-width: 760px) {
+    .riffside-account .ra-desktop-theme { display: none; }
+    .riffside-account .ra-sidebar-theme { display: flex; padding-block: 8px; }
+    .riffside-account .ra-sidebar-theme button { inline-size: 100%; min-block-size: 44px; }
+}
 
 
 

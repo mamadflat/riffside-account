@@ -60,7 +60,7 @@ final class Support {
         if(!is_user_logged_in())return;
         $admin=$admin===true&&self::staff();$id=isset($_GET['ticket'])?absint($_GET['ticket']):0;
         self::notice();
-        echo '<div class="ra-page-head"><h1>پشتیبانی</h1><p>گفت‌وگو دربارهٔ خرید و محصولات</p></div>';
+        if (!is_account_page()) echo '<div class="ra-page-head"><h1>پشتیبانی</h1><p>گفت‌وگو دربارهٔ خرید و محصولات</p></div>';
         if($id){$ticket=get_post($id);if(!self::allowed($ticket)){echo '<p class="ra-notice">تیکت پیدا نشد یا دسترسی به آن مجاز نیست.</p>';return;}
             echo '<section class="ra-card"><div class="ra-card-head"><h2>'.esc_html($ticket->post_title).'</h2><a href="'.esc_url(self::url(0,$admin)).'">همهٔ تیکت‌ها</a></div><div class="ra-message">'.nl2br(esc_html($ticket->post_content)).'<small>پیام آغاز گفت‌وگو</small></div>';
             $page=max(1,absint($_GET['replies_page']??1));$replies=new \WP_Query(['post_type'=>'ra_reply','post_status'=>'private','post_parent'=>$id,'posts_per_page'=>30,'paged'=>$page,'orderby'=>'ID','order'=>'DESC']);
@@ -76,7 +76,7 @@ final class Support {
         if(!$q->posts)echo '<p class="ra-empty">هنوز تیکتی ثبت نشده است.</p>';
         foreach($q->posts as $ticket){$status=get_post_meta($ticket->ID,'_ra_status',true);echo '<article class="ra-order ra-row"><a href="'.esc_url(self::url($ticket->ID,$admin)).'">'.esc_html($ticket->post_title).'</a><span class="ra-badge">'.esc_html(['open'=>'در انتظار پاسخ','answered'=>'پاسخ داده‌شده','closed'=>'بسته‌شده'][$status]??'در انتظار پاسخ').'</span></article>';}
         echo wp_kses_post(paginate_links(['base'=>add_query_arg('support_page','%#%',self::url(0,$admin)),'format'=>'','current'=>$page,'total'=>$q->max_num_pages,'prev_text'=>'قبلی','next_text'=>'بعدی']));echo '</section>';
-        if(!$admin){echo '<section class="ra-card"><h2>تیکت جدید</h2>';self::form('create');echo '<label for="ra-subject">موضوع</label><input id="ra-subject" name="subject" required maxlength="160"><label for="ra-related-order">سفارش مرتبط</label><select id="ra-related-order" name="order_id"><option value="0">پرسش عمومی</option>';foreach(wc_get_orders(['customer_id'=>get_current_user_id(),'limit'=>30]) as $order)echo '<option value="'.(int)$order->get_id().'">'.esc_html('سفارش '.$order->get_order_number()).'</option>';echo '</select><label for="ra-message">پیام شما</label><textarea id="ra-message" name="message" required rows="5" maxlength="5000"></textarea><button class="ra-button ra-primary" type="submit">ثبت تیکت</button></form></section>';}
+        if(!$admin){echo '<section class="ra-card" id="ra-new-ticket"><h2>تیکت جدید</h2>';self::form('create');echo '<label for="ra-subject">موضوع</label><input id="ra-subject" name="subject" required maxlength="160"><label for="ra-related-order">سفارش مرتبط</label><select id="ra-related-order" name="order_id"><option value="0">پرسش عمومی</option>';foreach(wc_get_orders(['customer_id'=>get_current_user_id(),'limit'=>30]) as $order)echo '<option value="'.(int)$order->get_id().'">'.esc_html('سفارش '.$order->get_order_number()).'</option>';echo '</select><label for="ra-message">پیام شما</label><textarea id="ra-message" name="message" required rows="5" maxlength="5000"></textarea><button class="ra-button ra-primary" type="submit">ثبت تیکت</button></form></section>';}
     }
     public static function admin(){if(!self::staff()||!Appearance::enabled('support'))return;echo '<div class="wrap ra-admin"><h1>تیکت‌های پنل ریف‌ساید</h1>';self::view(true);echo '</div>';}
 }
